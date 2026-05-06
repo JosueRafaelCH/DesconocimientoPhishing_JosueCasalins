@@ -1,0 +1,3 @@
+## Objetivo general
+
+Diseñar un simulador web educativo, adaptativo que fortalezca la cultura de seguridad digital en la comunidad estudiantil universitaria, mediante la implementación de estrategias formativas y preventivas orientadas al incremento del conocimiento, la identificación y la autoprotección frente a amenazas como el phishing y el robo de credenciales, a través de experiencias interactivas, retroalimentación personalizada, análisis del comportamiento del usuario , con el fin de mitigar los riesgos asociados al uso inseguro de plataformas institucionales y la promoción de prácticas responsables en la gestión de información digital.
