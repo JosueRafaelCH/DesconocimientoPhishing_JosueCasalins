@@ -1,57 +1,11 @@
-# Propuesta de Investigación: Concientización en Ciberseguridad
+## Planteamiento del problema
 
-Este repositorio contiene el planteamiento del problema y la pregunta de investigación enfocada en la seguridad digital de estudiantes universitarios en Medellín.
+Un estudio con 373 estudiantes del Instituto Tecnológico Metropolitano de Medellín demostró que los smartphones (77.7%) y laptops (76.7%) fueron los dispositivos más utilizados para el aprendizaje, mientras que el 80.7% consideró las herramientas TIC como muy importantes para el desarrollo de clases, identificando a Teams como la plataforma más relevante para formación sincrónica (96%) (López-Sánchez et al., 2024). Estos estudiantes acceden habitualmente a plataformas como aulas virtuales (LMS), correos institucionales, servicios en la nube y redes sociales académicas, donde las correlaciones más fuertes se encontraron entre la facilidad de uso y la utilidad percibidas (0.599) según el Modelo de Aceptación Tecnológica (Mejía Delgado & Mejía Delgado, 2021). Sin embargo, este incremento digital los ha expuesto a mayores riesgos de phishing y robo de credenciales, particularmente ataques de phishing dirigidos a correos institucionales, donde estudios controlados en comunidades universitarias han demostrado que, de 8,712 correos de phishing enviados a estudiantes, 4,740 fueron leídos, 2,567 usuarios hicieron clic en enlaces maliciosos y 2,098 individuos enviaron datos confidenciales (Díaz Vivas et al., 2024). 
 
-## 1. Planteamiento del Problema
+La transformación digital acelerada post pandemia evidenció que la madurez tecnológica de los estudiantes se basa principalmente en tecnologías de comunicación, resaltando la necesidad urgente de fortalecer la concientización sobre seguridad de la información ante el aumento del 75% en ciberataques al sector educativo a nivel global (Valencia-Arias et al., 2021). Esta problemática se agrava en contextos de vulnerabilidad digital, como el uso de dispositivos compartidos, redes Wi-Fi públicas o navegadores sin actualizaciones de seguridad, escenarios comunes entre estudiantes de estratos 2 al 5 (González, 2021). A esto se suma la escasa intervención institucional en la promoción de campañas de sensibilización o formación digital segura, lo cual limita la generación de una cultura de autoprotección digital. Un ejemplo concreto se observa en Medellín, donde los ciberdelitos como phishing, robo de identidad y secuestro de datos han aumentado notablemente (El Colombiano, 2025).
 
-### Contexto de Uso Tecnológico
-Un estudio realizado con 373 estudiantes del **Instituto Tecnológico Metropolitano (ITM) de Medellín** reveló una alta dependencia de dispositivos digitales para el aprendizaje:
-* **Smartphones:** 77.7%
-* **Laptops:** 76.7%
-* **Herramientas TIC:** El 80.7% las considera vitales para el desarrollo de clases.
-* **Microsoft Teams:** Plataforma líder para formación sincrónica (96%) (López-Sánchez et al., 2024).
+A lo anterior se suma que esta realidad no solo incrementa la probabilidad de incidentes de seguridad personal, sino que también constituye una amenaza para la infraestructura tecnológica de las universidades. Una práctica inadecuada por parte del usuario final, como compartir credenciales o descargar archivos infectados, puede facilitar accesos maliciosos a plataformas institucionales o la pérdida de información académica. En el contexto colombiano, se han documentado casos de phishing dirigidos a cuentas universitarias, donde los ciberdelincuentes emplean páginas falsas que simulan portales institucionales con el fin de capturar credenciales (IT Candino, 2018). De igual manera, la Universidad EAFIT identificó en sus auditorías más de 53.000 vulnerabilidades tecnológicas, lo cual evidencia riesgos reales para la seguridad de la información académica (Universidad EAFIT, 2020). Investigaciones recientes, además, subrayan la necesidad de implementar modelos de concientización sobre seguridad digital en universidades públicas del país, como respuesta al incremento de amenazas y a las debilidades en la gestión de datos institucionales (Sarmiento et al., 2022). Desde el enfoque de la gestión de riesgos, esta situación se configura como una vulnerabilidad latente que podría mitigarse mediante la identificación, el análisis y el tratamiento proactivo de los riesgos digitales, en concordancia con lo planteado por la norma ISO 31000 (ISO, 2018).
 
-A pesar de que existe una fuerte correlación entre la facilidad de uso y la utilidad percibida de las plataformas (0.599 según el Modelo TAM), el aumento de la digitalización ha incrementado la superficie de ataque para los estudiantes (Mejía Delgado & Mejía Delgado, 2021).
+## Pregunta central de investigación
 
-### Riesgos y Vulnerabilidades Identificadas
-El incremento digital ha expuesto a la comunidad académica a riesgos críticos de **phishing y robo de credenciales**. Datos alarmantes de estudios controlados en universidades muestran la efectividad de estos ataques:
-
-| Métrica de Phishing (Estudio Controlado) | Cantidad |
-| :--- | :--- |
-| Correos enviados | 8,712 |
-| Correos leídos | 4,740 |
-| Clics en enlaces maliciosos | 2,567 |
-| **Envío de datos confidenciales** | **2,098** |
-*(Fuente: Díaz Vivas et al., 2024)*
-
-### Factores Agravantes
-1.  **Aumento de Ciberataques:** Se registra un incremento del **75%** en ataques al sector educativo global (Valencia-Arias et al., 2021).
-2.  **Vulnerabilidad Digital:** El uso de dispositivos compartidos, redes Wi-Fi públicas y navegadores desactualizados es común en estudiantes de **estratos 2 al 5** (González, 2021).
-3.  **Cultura de Autoprotección Débil:** Escasa intervención institucional en campañas de sensibilización. En Medellín, los delitos como el secuestro de datos y el phishing han mostrado un aumento notable (El Colombiano, 2025).
-
-### Impacto Institucional
-La mala práctica del usuario final (compartir credenciales o descargar archivos infectados) no solo afecta la privacidad personal, sino que compromete la infraestructura tecnológica de las universidades. 
-* **Caso EAFIT:** Auditorías identificaron más de **53.000 vulnerabilidades** tecnológicas (Universidad EAFIT, 2020).
-* **Caso IT Candino:** Documentó el uso de portales falsos que simulan servicios institucionales para capturar credenciales (2018).
-
-Desde la gestión de riesgos, esta situación se identifica como una vulnerabilidad latente que requiere tratamiento proactivo bajo estándares como la **norma ISO 31000** (ISO, 2018; Sarmiento et al., 2022).
-
----
-
-## 2. Pregunta Central de Investigación
-
-> **¿En qué medida un simulador web gamificado de concientización en ciberseguridad mejora la detección de intentos de phishing y las prácticas de gestión de contraseñas en estudiantes universitarios de Medellín (estratos 2–5) durante un piloto de 4–6 semanas?**
-
----
-
-## Referencias Bibliográficas Citadas
-* Díaz Vivas et al. (2024). Estudio sobre phishing en comunidades universitarias.
-* El Colombiano (2025). Reporte de ciberdelitos en Medellín.
-* González (2021). Vulnerabilidad digital en estratos socioeconómicos.
-* ISO (2018). Norma ISO 31000: Gestión de Riesgos.
-* IT Candino (2018). Análisis de phishing en cuentas universitarias.
-* López-Sánchez et al. (2024). Uso de dispositivos y TIC en el ITM.
-* Mejía Delgado & Mejía Delgado (2021). Modelo de Aceptación Tecnológica (TAM) en educación.
-* Sarmiento et al. (2022). Modelos de concientización en universidades públicas.
-* Universidad EAFIT (2020). Auditoría de vulnerabilidades tecnológicas.
-* Valencia-Arias et al. (2021). Madurez tecnológica y ciberataques post-pandemia.
+¿En qué medida un simulador web gamificado de concientización en ciberseguridad mejora la detección de intentos de phishing y las prácticas de gestión de contraseñas en estudiantes universitarios de Medellín (estratos 2–5) durante un piloto de 4–6 semanas?
