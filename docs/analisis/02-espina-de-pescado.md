@@ -1,6 +1,6 @@
 ## Análisis de Causas: Diagrama de Ishikawa
 
-![Diagrama de Ishikawa: Aumento de incidentes de phishing](.//docs/imagenes/Espina_Pescado.png)
+![Diagrama de Ishikawa: Aumento de incidentes de phishing](../imagenes/Espina_Pescado.png)
 
 ### Problema Central
 **Aumento de incidentes de phishing y robo de credenciales en estudiantes universitarios**
