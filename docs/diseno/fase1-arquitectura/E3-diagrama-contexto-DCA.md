@@ -1,3 +1,3 @@
 ## Diagrama-contexto-DCA
 
-![Diagrama-contexto-DCA](../imagenes/DiagramaDiagrama DCA.png)
+![Diagrama-contexto-DCA](../imagenes/DiagramaDiagramaDCA.png)
