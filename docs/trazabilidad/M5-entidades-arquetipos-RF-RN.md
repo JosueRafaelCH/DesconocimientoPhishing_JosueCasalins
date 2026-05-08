@@ -1,4 +1,4 @@
-Matriz de trazabilidad: Entidades → Arquetipos → RF → Reglas de negocio
+### Matriz de trazabilidad: Entidades → Arquetipos → RF → Reglas de negocio
 
 | Entidades (BD) | Arquetipos (Clases POO) | RF (Requisito Funcional Relacionado) | Reglas de Negocio Aplicadas |
 | :--- | :--- | :--- | :--- |

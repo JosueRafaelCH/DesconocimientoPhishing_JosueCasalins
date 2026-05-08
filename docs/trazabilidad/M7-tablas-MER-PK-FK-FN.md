@@ -1,4 +1,4 @@
-Matriz de trazabilidad: Tablas relacionales → MER → PK → FK → Forma normal
+### Matriz de trazabilidad: Tablas relacionales → MER → PK → FK → Forma normal
 
 | Relación | Entidades involucradas | Cardinalidad | Regla de negocio que la justifica |
 | :--- | :--- | :--- | :--- |
