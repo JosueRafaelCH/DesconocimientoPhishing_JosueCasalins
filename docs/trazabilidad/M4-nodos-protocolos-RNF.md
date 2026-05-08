@@ -1,4 +1,4 @@
-Matriz de trazabilidad: Nodos de despliegue → Protocolos → RNF → Componentes
+### Matriz de trazabilidad: Nodos de despliegue → Protocolos → RNF → Componentes
 
 | Nodos de despliegue | Protocolos | RNF (Requisitos No Funcionales) | Componentes |
 | :--- | :--- | :--- | :--- |
