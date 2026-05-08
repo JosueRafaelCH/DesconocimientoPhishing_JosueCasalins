@@ -44,4 +44,4 @@ Para poner en marcha el simulador en un entorno local, sigo estos pasos:
     * O bien, inicio el proyecto desde mi IDE (IntelliJ IDEA o Eclipse) ejecutando la clase principal del framework.
 
 4.  **Acceso:**
-    * Una vez que el servidor esté arriba, accedo a la interfaz web a través de `http://localhost:8080` para iniciar el registro con el dominio institucional.
+    * Una vez que el servidor esté arriba, accedo a la interfaz web a través de `http://localhost:8080` para iniciar el registro.
