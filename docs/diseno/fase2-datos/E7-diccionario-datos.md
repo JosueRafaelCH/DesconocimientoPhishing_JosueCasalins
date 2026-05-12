@@ -19,7 +19,7 @@ Catálogo de roles posibles dentro del sistema.
 | Campo | Tipo | Nulo | Clave | Descripción |
 | :--- | :--- | :--- | :--- | :--- |
 | id_rol | INT | NO | PK | Identificador único del rol. Auto-incremental. |
-| nombre_rol | VARCHAR | NO | — | Nombre del rol. Ej: 'Admin', 'Docente', 'Estudiante'. |
+| nombre_rol | VARCHAR(50) | NO | — | Nombre del rol. Ej: 'Admin', 'Docente', 'Estudiante'. |
 
 ### Tabla: Estados_Usuario
 Catálogo de estados de actividad de un usuario.
@@ -27,7 +27,7 @@ Catálogo de estados de actividad de un usuario.
 | Campo | Tipo | Nulo | Clave | Descripción |
 | :--- | :--- | :--- | :--- | :--- |
 | id_estado | INT | NO | PK | Identificador único del estado. Auto-incremental. |
-| nombre_estado | VARCHAR | NO | — | Nombre del estado. Ej: 'Activo', 'Inactivo', 'Bloqueado'. |
+| nombre_estado | VARCHAR(50) | NO | — | Nombre del estado. Ej: 'Activo', 'Inactivo', 'Bloqueado'. |
 
 ### Tabla: Estados_Evento
 Catálogo de estados de un evento de simulación de phishing.
@@ -35,7 +35,7 @@ Catálogo de estados de un evento de simulación de phishing.
 | Campo | Tipo | Nulo | Clave | Descripción |
 | :--- | :--- | :--- | :--- | :--- |
 | id_estado_evento | INT | NO | PK | Identificador único del estado del evento. Auto-incremental. |
-| nombre_estado | VARCHAR | NO | — | Nombre del estado. Ej: 'Enviado', 'Abierto', 'Ignorado'. |
+| nombre_estado | VARCHAR(50) | NO | — | Nombre del estado. Ej: 'Enviado', 'Abierto', 'Ignorado'. |
 
 ### Tabla: Estratos
 Catálogo de estratos socioeconómicos válidos del 1 al 6, según clasificación colombiana.
@@ -43,7 +43,7 @@ Catálogo de estratos socioeconómicos válidos del 1 al 6, según clasificació
 | Campo | Tipo | Nulo | Clave | Descripción |
 | :--- | :--- | :--- | :--- | :--- |
 | id_estrato | INT | NO | PK | Identificador del estrato. Valores del 1 al 6. No auto-incremental. |
-| descripcion | VARCHAR | NO | — | Texto descriptivo. Ej: 'Estrato 1', 'Estrato 2'. |
+| descripcion | VARCHAR(50) | NO | — | Texto descriptivo. Ej: 'Estrato 1', 'Estrato 2'. |
 
 ---
 
@@ -55,10 +55,10 @@ Almacena la información de todos los usuarios del sistema: administradores, doc
 | Campo | Tipo | Nulo | Clave | Descripción |
 | :--- | :--- | :--- | :--- | :--- |
 | id_usuario | INT | NO | PK | Identificador único del usuario. Auto-incremental. |
-| nombres | VARCHAR | NO | — | Nombres del usuario. |
-| apellidos | VARCHAR | NO | — | Apellidos del usuario. |
-| correo_institucional | VARCHAR | NO | UQ | Correo institucional único. Usado como identificador de login. |
-| contrasena_hash | VARCHAR | NO | — | Hash de la contraseña. Nunca se almacena en texto plano. |
+| nombres | VARCHAR(100) | NO | — | Nombres del usuario. |
+| apellidos | VARCHAR(100) | NO | — | Apellidos del usuario. |
+| correo_institucional | VARCHAR(150) | NO | UQ | Correo institucional único. Usado como identificador de login. |
+| contrasena_hash | VARCHAR(255) | NO | — | Hash de la contraseña. Nunca se almacena en texto plano. |
 | id_rol | INT | NO | FK → Roles | Rol del usuario dentro del sistema. |
 | id_estado | INT | NO | FK → Estados_Usuario | Estado actual de la cuenta. |
 | id_estrato | INT | NO | FK → Estratos | Estrato socioeconómico del usuario. |
@@ -75,9 +75,9 @@ Define los niveles de dificultad del sistema. Los rangos de puntaje permiten que
 | Campo | Tipo | Nulo | Clave | Descripción |
 | :--- | :--- | :--- | :--- | :--- |
 | id_nivel | INT | NO | PK | Identificador único del nivel. Auto-incremental. |
-| nombre_nivel | VARCHAR | NO | — | Nombre del nivel. Ej: 'Fácil', 'Medio', 'Difícil'. |
-| puntaje_minimo | DECIMAL | NO | — | Puntaje mínimo (inclusive) para ser asignado a este nivel. |
-| puntaje_maximo | DECIMAL | NO | — | Puntaje máximo (inclusive) para ser asignado a este nivel. |
+| nombre_nivel | VARCHAR(50) | NO | — | Nombre del nivel. Ej: 'Fácil', 'Medio', 'Difícil'. |
+| puntaje_minimo | DECIMAL(5,2) | NO | — | Puntaje mínimo (inclusive) para ser asignado a este nivel. |
+| puntaje_maximo | DECIMAL(5,2) | NO | — | Puntaje máximo (inclusive) para ser asignado a este nivel. |
 | descripcion | TEXT | SÍ | — | Descripción detallada de las características del nivel. |
 
 ---
@@ -134,9 +134,9 @@ Contiene los escenarios de phishing simulado que el sistema asigna a los estudia
 | Campo | Tipo | Nulo | Clave | Descripción |
 | :--- | :--- | :--- | :--- | :--- |
 | id_escenario | INT | NO | PK | Identificador único del escenario. Auto-incremental. |
-| titulo | VARCHAR | NO | — | Título del escenario de phishing. |
-| descripcion | VARCHAR | SÍ | — | Descripción del contenido y objetivo del escenario. |
-| imagen_escenario | VARCHAR | SÍ | — |  |
+| titulo | VARCHAR(150) | NO | — | Título del escenario de phishing. |
+| descripcion | VARCHAR(500) | SÍ | — | Descripción del contenido y objetivo del escenario. |
+| imagen_escenario | VARCHAR(300) | SÍ | — | Ruta o URL de la imagen representativa del escenario. Regla de negocio: un escenario tiene exactamente una imagen. |
 | id_nivel | INT | NO | FK → Niveles_Dificultad | Nivel de dificultad al que pertenece el escenario. |
 | fecha_actualizacion | DATETIME | NO | — | Fecha y hora de la última modificación. |
 
@@ -176,4 +176,4 @@ Almacena el consejo personalizado generado por la IA para cada interacción del 
 | id_interaccion | INT | NO | FK → Interacciones_Phishing | Interacción a la que responde este feedback. |
 | contenido_feedback | TEXT | NO | — | Texto del consejo generado por la IA. |
 | fecha_generacion | DATETIME | NO | — | Fecha y hora en que se generó el feedback. |
-| modelo_ia | VARCHAR | SÍ | — | Nombre del modelo de IA usado. Campo de trazabilidad opcional. |
+| modelo_ia | VARCHAR(100) | SÍ | — | Nombre del modelo de IA usado. Campo de trazabilidad opcional. |
