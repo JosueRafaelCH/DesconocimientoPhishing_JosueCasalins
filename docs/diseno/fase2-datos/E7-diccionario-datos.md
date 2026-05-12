@@ -62,8 +62,8 @@ Almacena la información de todos los usuarios del sistema: administradores, doc
 | id_rol | INT | NO | FK → Roles | Rol del usuario dentro del sistema. |
 | id_estado | INT | NO | FK → Estados_Usuario | Estado actual de la cuenta. |
 | id_estrato | INT | NO | FK → Estratos | Estrato socioeconómico del usuario. |
-| fecha_registro | DATETIME | NO | — | Fecha y hora de creación del registro. Default: now(). |
-| fecha_actualizacion | DATETIME | NO | — | Fecha y hora de la última modificación. |
+| fecha_registro | DATE | NO | — | Fecha de creación del registro. Default: now(). |
+| fecha_actualizacion | DATE | NO | — | Fecha de la última modificación. |
 
 ---
 
@@ -91,8 +91,8 @@ Registra cada sesión de test realizada por un usuario. El puntaje se calcula di
 | :--- | :--- | :--- | :--- | :--- |
 | id_test | INT | NO | PK | Identificador único del test. Auto-incremental. |
 | id_usuario | INT | NO | FK → Usuarios | Usuario que realizó el test. |
-| fecha_realizacion | DATETIME | NO | — | Fecha y hora de realización. Default: now(). |
-| fecha_actualizacion | DATETIME | NO | — | Fecha y hora de la última modificación. |
+| fecha_realizacion | DATE | NO | — | Fecha de realización. Default: now(). |
+| fecha_actualizacion | DATE | NO | — | Fecha de la última modificación. |
 
 ### Tabla: Preguntas_Test
 Banco de preguntas del test evaluativo. Las opciones de respuesta se almacenan en Opciones_Pregunta para cumplir 1FN.
@@ -102,7 +102,7 @@ Banco de preguntas del test evaluativo. Las opciones de respuesta se almacenan e
 | id_pregunta | INT | NO | PK | Identificador único de la pregunta. Auto-incremental. |
 | enunciado | TEXT | NO | — | Texto completo de la pregunta. |
 | id_nivel | INT | NO | FK → Niveles_Dificultad | Nivel de conocimiento que evalúa esta pregunta. |
-| fecha_actualizacion | DATETIME | NO | — | Fecha y hora de la última modificación. |
+| fecha_actualizacion | DATE | NO | — | Fecha de la última modificación. |
 
 ### Tabla: Opciones_Pregunta
 Opciones de respuesta de cada pregunta de selección múltiple. Tabla creada para cumplir 1FN: las opciones no pueden ser atributos repetidos dentro de Preguntas_Test.
@@ -138,7 +138,7 @@ Contiene los escenarios de phishing simulado que el sistema asigna a los estudia
 | descripcion | VARCHAR(500) | SÍ | — | Descripción del contenido y objetivo del escenario. |
 | imagen_escenario | VARCHAR(300) | SÍ | — | Ruta o URL de la imagen representativa del escenario. Regla de negocio: un escenario tiene exactamente una imagen. |
 | id_nivel | INT | NO | FK → Niveles_Dificultad | Nivel de dificultad al que pertenece el escenario. |
-| fecha_actualizacion | DATETIME | NO | — | Fecha y hora de la última modificación. |
+| fecha_actualizacion | DATE | NO | — | Fecha de la última modificación. |
 
 ### Tabla: Eventos_Simulacion
 Registra el envío de un escenario de phishing a un usuario. Es el punto de partida de cada simulación.
@@ -150,8 +150,8 @@ Registra el envío de un escenario de phishing a un usuario. Es el punto de part
 | id_escenario | INT | NO | FK → Escenarios_Phishing | Escenario de phishing asignado. |
 | id_test | INT | NO | FK → Test_Evaluativo | Test evaluativo que originó la asignación del nivel. |
 | id_estado_evento | INT | NO | FK → Estados_Evento | Estado actual del evento (Enviado / Abierto / Ignorado). |
-| fecha_envio | DATETIME | NO | — | Fecha y hora en que se lanzó la simulación. |
-| fecha_actualizacion | DATETIME | NO | — | Fecha y hora de la última modificación. |
+| fecha_envio | DATE | NO | — | Fecha en que se lanzó la simulación. |
+| fecha_actualizacion | DATE | NO | — | Fecha de la última modificación. |
 
 ---
 
@@ -164,8 +164,8 @@ Registra el comportamiento del estudiante frente al escenario simulado: si hizo 
 | :--- | :--- | :--- | :--- | :--- |
 | id_interaccion | INT | NO | PK | Identificador único de la interacción. Auto-incremental. |
 | id_evento | INT | NO | FK (1:1) → Eventos_Simulacion | Evento al que corresponde la interacción. Único por evento. |
-| fecha_clic | DATETIME | SÍ | — | Fecha y hora del clic en el enlace. NULL si no hizo clic. |
-| fecha_datos_ingresados | DATETIME | SÍ | — | Fecha y hora en que ingresó credenciales. NULL si no lo hizo. |
+| fecha_clic | DATE | SÍ | — | Fecha del clic en el enlace. NULL si no hizo clic. |
+| fecha_datos_ingresados | DATE | SÍ | — | Fecha en que ingresó credenciales. NULL si no lo hizo. |
 
 ### Tabla: Feedback_IA
 Almacena el consejo personalizado generado por la IA para cada interacción del estudiante.
@@ -175,5 +175,5 @@ Almacena el consejo personalizado generado por la IA para cada interacción del 
 | id_feedback | INT | NO | PK | Identificador único del feedback. Auto-incremental. |
 | id_interaccion | INT | NO | FK → Interacciones_Phishing | Interacción a la que responde este feedback. |
 | contenido_feedback | TEXT | NO | — | Texto del consejo generado por la IA. |
-| fecha_generacion | DATETIME | NO | — | Fecha y hora en que se generó el feedback. |
+| fecha_generacion | DATE | NO | — | Fecha en que se generó el feedback. |
 | modelo_ia | VARCHAR(100) | SÍ | — | Nombre del modelo de IA usado. Campo de trazabilidad opcional. |
