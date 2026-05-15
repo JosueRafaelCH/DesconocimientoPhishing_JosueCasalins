@@ -48,7 +48,8 @@ public class TestEvaluativo {
     private List<EventoSimulacion> eventos = new ArrayList<>();
 
     public TestEvaluativo() {
-
+        respuestas = new ArrayList<>();
+        eventos = new ArrayList<>();
     }
 
     

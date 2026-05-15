@@ -44,7 +44,7 @@ public class InteraccionPhishing {
     private List<FeedbackIA> feedbacks = new ArrayList<>();
 
     public InteraccionPhishing() {
-
+        feedbacks = new ArrayList<>();
     }
 
     

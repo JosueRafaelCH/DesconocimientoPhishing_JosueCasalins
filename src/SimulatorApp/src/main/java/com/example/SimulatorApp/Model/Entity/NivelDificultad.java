@@ -45,7 +45,8 @@ public class NivelDificultad {
     private List<EscenarioPhishing> escenarios = new ArrayList<>();
 
     public NivelDificultad() {
-
+        preguntas = new ArrayList<>();
+        escenarios = new ArrayList<>();
     }
 
     

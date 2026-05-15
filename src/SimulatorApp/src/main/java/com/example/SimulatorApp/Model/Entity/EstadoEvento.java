@@ -31,7 +31,7 @@ public class EstadoEvento {
     private List<EventoSimulacion> eventos = new ArrayList<>();
 
     public EstadoEvento() {
-
+        eventos = new ArrayList<>();
     }
 
     public EstadoEvento(Integer id, String nombreEstado, List<EventoSimulacion> eventos) {

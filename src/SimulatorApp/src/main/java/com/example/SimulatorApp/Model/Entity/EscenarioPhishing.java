@@ -49,7 +49,7 @@ public class EscenarioPhishing {
     private List<EventoSimulacion> eventos = new ArrayList<>();
 
     public EscenarioPhishing() {
-
+        eventos = new ArrayList<>();
     }
 
     public EscenarioPhishing(Integer id, String titulo, String descripcion, String imagenEscenario,

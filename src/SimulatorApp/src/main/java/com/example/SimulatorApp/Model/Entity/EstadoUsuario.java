@@ -31,7 +31,7 @@ public class EstadoUsuario {
     private List<Usuario> usuarios = new ArrayList<>();
 
     public EstadoUsuario() {
-
+        usuarios = new ArrayList<>();
     }
 
     public EstadoUsuario(Integer id, String nombreEstado, List<Usuario> usuarios) {

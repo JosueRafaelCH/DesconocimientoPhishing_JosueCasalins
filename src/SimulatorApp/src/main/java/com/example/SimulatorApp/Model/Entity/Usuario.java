@@ -70,7 +70,8 @@ public class Usuario {
     private List<EventoSimulacion> eventos = new ArrayList<>();
 
     public Usuario() {
-
+        tests = new ArrayList<>();
+        eventos = new ArrayList<>();
     }
 
     public Usuario(Integer id, String nombres, String apellidos, String correoInstitucional, String contrasenaHash,

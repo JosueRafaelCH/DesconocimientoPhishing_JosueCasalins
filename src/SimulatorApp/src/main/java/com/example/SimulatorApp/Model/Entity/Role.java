@@ -31,7 +31,7 @@ public class Role {
     private List<Usuario> usuarios = new ArrayList<>();
 
     public Role() {
-        
+       usuarios = new ArrayList<>();
     }
 
     public Role(Integer id, String nombreRol, List<Usuario> usuarios) {

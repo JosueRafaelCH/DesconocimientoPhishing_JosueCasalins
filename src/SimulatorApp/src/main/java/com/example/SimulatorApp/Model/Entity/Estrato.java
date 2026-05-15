@@ -28,7 +28,7 @@ public class Estrato {
     private List<Usuario> usuarios = new ArrayList<>();
 
     public Estrato() {
-
+        usuarios = new ArrayList<>();
     }
 
     public Integer getId() {

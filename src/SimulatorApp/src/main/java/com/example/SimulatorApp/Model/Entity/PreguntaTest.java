@@ -44,6 +44,7 @@ public class PreguntaTest {
     private List<OpcionPregunta> opciones = new ArrayList<>();
 
     public PreguntaTest() {
+        opciones = new ArrayList<>();
     }
 
     public PreguntaTest(Integer id, String enunciado, NivelDificultad nivel, LocalDate fechaActualizacion,
