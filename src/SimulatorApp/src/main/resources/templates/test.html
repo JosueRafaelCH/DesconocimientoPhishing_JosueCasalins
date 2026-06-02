@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Test Diagnóstico</title>
+</head>
+<body>
+    <h2>Test Diagnóstico</h2>
+    <form th:action="@{/test/submit}" method="post">
+        <div th:each="pregunta, iterStat : ${preguntas}">
+            <p th:text="${pregunta.enunciado}">Pregunta?</p>
+            <div th:each="opcion : ${pregunta.opciones}">
+                <input type="radio" th:name="'respuestas[' + ${iterStat.index} + ']'" th:value="${opcion.id_opcion}" required />
+                <label th:text="${opcion.texto_opcion}">Opcion</label>
+            </div>
+        </div>
+        <button type="submit">Enviar Test</button>
+    </form>
+</body>
+</html>

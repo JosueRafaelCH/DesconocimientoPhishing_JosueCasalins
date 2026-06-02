@@ -198,4 +198,4 @@ En el diseño inicial, el campo `feedback_ia` vivía dentro de `Interacciones_Ph
 
 ## 6. Modelo Final Normalizado (3FN)
 
-Tras aplicar las tres formas normales, el modelo quedó compuesto por 13 tablas bien definidas, sin redundancia, sin dependencias transitivas y con integridad referencial garantizada por claves foráneas.
+Tras aplicar las tres formas normales, el modelo quedó compuesto por 14 tablas bien definidas, sin redundancia, sin dependencias transitivas y con integridad referencial garantizada por claves foráneas.

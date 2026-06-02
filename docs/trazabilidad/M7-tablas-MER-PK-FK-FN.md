@@ -1,11 +1,13 @@
-### Matriz de trazabilidad: Tablas relacionales → MER → PK → FK → Forma normal
+### Matriz de trazabilidad: Tablas → PK → FK → Forma Normal (3FN)
 
-| Relación | Entidades involucradas | Cardinalidad | Regla de negocio que la justifica |
-| :--- | :--- | :--- | :--- |
-| realiza | Usuario — Test_Evaluativo | 1:N | RN-01: Un estudiante puede realizar múltiples ciclos de evaluación (tests) a lo largo del tiempo. |
-| crea | Usuario — Escenario_Phishing | 1:N | RN-02: Un administrador puede crear múltiples plantillas de escenarios de phishing. |
-| contiene | Test_Evaluativo — Detalle_Test_Pregunta | 1:N | RN-03: Un test diagnóstico se compone de múltiples preguntas para evaluar al estudiante. |
-| dispara | Test_Evaluativo — Evento_Simulacion | 1:1 | RN-04: Un test diagnóstico debe disparar exactamente un evento de simulación práctica (dependencia estricta). |
-| utiliza | Escenario_Phishing — Evento_Simulacion | 1:N | RN-05: Un mismo escenario de phishing puede ser utilizado en varios eventos de simulación de diferentes estudiantes. |
-| procesa | Evento_Simulacion — Evaluacion_IA | 1:1 | RN-06: Cada evento de simulación debe ser procesado una única vez por la IA para generar retroalimentación. |
-| consolida | Evaluacion_IA — Reporte_Hibrido | 1:1 | RN-07: El análisis final de la IA se consolida en un único reporte híbrido por cada ciclo completado. |
+| Tabla | PK | FK | Forma Normal | Descripción |
+| :--- | :--- | :--- | :--- | :--- |
+| **Usuarios** | id_usuario | id_rol, id_estado, id_estrato | 3FN | Gestión centralizada de usuarios. |
+| **Test_Evaluativo** | id_test | id_usuario | 3FN | Sesiones de diagnóstico. |
+| **Escenarios_Phishing** | id_escenario | id_nivel | 3FN | Catálogo de escenarios. |
+| **Eventos_Simulacion** | id_evento | id_usuario, id_escenario, id_test, id_estado_evento | 3FN | Registro de ejecución. |
+| **Interacciones_Phishing** | id_interaccion | id_evento | 3FN | Registro de comportamiento. |
+| **Feedback_IA** | id_feedback | id_interaccion | 3FN | Retroalimentación adaptativa. |
+| **Preguntas_Test** | id_pregunta | id_nivel | 3FN | Banco de preguntas. |
+| **Opciones_Pregunta** | id_opcion | id_pregunta | 3FN | Opciones de selección. |
+| **Respuestas_Test** | id_respuesta | id_test, id_pregunta, id_opcion | 3FN | Selección del usuario. |

@@ -8,4 +8,5 @@ import com.example.SimulatorApp.Model.Entity.Role;
 @Repository
 public interface RoleDAOIface extends JpaRepository<Role, Integer> {
     
+    Role findByNombreRol(String nombreRol);
 }

@@ -69,8 +69,8 @@ public interface SimiladorServiceIface {
     public void eliminarEscenarioPorId(Integer id);
     public List<EscenarioPhishing> buscarEscenariosPorNivel(Integer idNivel);
 
-    //Metodos Estado Evento
-    public List<EstadoEvento> buscarEstadosEventoTodos();
+    public Usuario register(Usuario usuario);
+    public void saveTestResult(Integer usuarioId, List<Integer> opcionIds);
     public EstadoEvento guardarEstadoEvento(EstadoEvento estado);
     public EstadoEvento buscarEstadoEventoPorId(Integer id);
     public void eliminarEstadoEventoPorId(Integer id);

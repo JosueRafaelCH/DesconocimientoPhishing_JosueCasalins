@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bandeja de Simulaciones</title>
+</head>
+<body>
+    <h2>Tus Simulaciones</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Escenario</th>
+                <th>Estado</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="evento : ${eventos}">
+                <td th:text="${evento.escenario.titulo}">Escenario</td>
+                <td th:text="${evento.estadoEvento.nombreEstado}">Estado</td>
+                <td><a href="#">Interactuar</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/dashboard">Volver al dashboard</a>
+</body>
+</html>

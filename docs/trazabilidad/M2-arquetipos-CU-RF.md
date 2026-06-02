@@ -2,7 +2,8 @@
 
 | Arquetipo identificado | Sustantivo origen (CU) | CU de origen | RF asociado |
 | :--- | :--- | :--- | :--- |
-| Ej. Usuario | usuario / credenciales | CU-01: Autenticar Usuario | RF-01 |
-| Ej. Test Diagnóstico | test / respuestas | CU-02: Realizar Test Diagnóstico | RF-04 |
-| Ej. Escenario de Phishing | escenario / plantilla | CU-04: Gestionar Escenarios | RF-11 |
-| Ej. Reporte Híbrido | reporte / métricas | CU-05: Consultar Reportes | RF-09 |
+| Usuario | usuario / credenciales | CU-01A, CU-01B | RF01, RF02 |
+| Test Diagnóstico | test / resultados | CU-02 | RF04, RF07 |
+| Escenario de Phishing | escenario / plantilla | CU-03 | RF04 |
+| Campaña | grupo / envío | CU-04 | RF10 |
+| Métricas | reportes / estadísticas | CU-06 | RF10 |
