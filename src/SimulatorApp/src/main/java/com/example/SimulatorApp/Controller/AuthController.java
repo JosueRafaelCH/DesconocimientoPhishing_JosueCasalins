@@ -1,43 +1,39 @@
 package com.example.SimulatorApp.Controller;
 
-import com.example.SimulatorApp.DTO.AuthResponse;
-import com.example.SimulatorApp.DTO.LoginRequest;
-import com.example.SimulatorApp.DTO.SignUpRequest;
+import com.example.SimulatorApp.Model.Usuario;
 import com.example.SimulatorApp.Service.AuthService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-@RestController
-@RequestMapping("/api/auth")
-@CrossOrigin(origins = "*", maxAge = 3600)
+@Controller
+@RequestMapping("/auth")
 public class AuthController {
 
     @Autowired
     private AuthService authService;
 
-    @PostMapping("/login")
-    public ResponseEntity<AuthResponse> login(@Valid @RequestBody LoginRequest loginRequest) {
-        AuthResponse response = authService.login(loginRequest);
-        if (response.isSuccess()) {
-            return ResponseEntity.ok(response);
+    @PostMapping("/registro")
+    public String registro(
+            @RequestParam String correo,
+            @RequestParam String contraseña,
+            @RequestParam String nombre,
+            RedirectAttributes redirectAttributes) {
+        try {
+            Usuario usuario = new Usuario();
+            usuario.setCorreo(correo);
+            usuario.setContraseña(contraseña);
+            usuario.setNombre(nombre);
+            authService.registrarUsuario(usuario);
+            redirectAttributes.addFlashAttribute("mensaje", "¡Registro exitoso! Inicia sesión con tus credenciales.");
+            return "redirect:/login";
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", "Error en el registro: " + e.getMessage());
+            return "redirect:/registro";
         }
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
-    }
-
-    @PostMapping("/signup")
-    public ResponseEntity<AuthResponse> signup(@Valid @RequestBody SignUpRequest signUpRequest) {
-        AuthResponse response = authService.signup(signUpRequest);
-        if (response.isSuccess()) {
-            return ResponseEntity.status(HttpStatus.CREATED).body(response);
-        }
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
-    }
-
-    @GetMapping("/health")
-    public ResponseEntity<String> health() {
-        return ResponseEntity.ok("Auth service is running");
     }
 }

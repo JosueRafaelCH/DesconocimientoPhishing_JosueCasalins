@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface EscenarioPhishingRepository extends JpaRepository<EscenarioPhishing, Long> {
-    List<EscenarioPhishing> findByNivelDificultad_IdNivelDificultad(Long idNivel);
+    List<EscenarioPhishing> findByNivelDificultadId(Long nivelId);
 }

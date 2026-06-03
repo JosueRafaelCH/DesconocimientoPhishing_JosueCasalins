@@ -1,24 +1,32 @@
 package com.example.SimulatorApp.Controller;
 
-import com.example.SimulatorApp.Model.Dao.EventoSimulacionDAOIface;
-import com.example.SimulatorApp.Model.Entity.EventoSimulacion;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequestMapping("/simulacion")
 public class SimulacionController {
 
-    @Autowired
-    private EventoSimulacionDAOIface eventoRepository;
+    @GetMapping("/iniciar/{escenarioId}")
+    public String iniciarSimulacion(@PathVariable Long escenarioId, Model model) {
+        model.addAttribute("escenarioId", escenarioId);
+        return "simulacion/iniciar";
+    }
 
-    @GetMapping("/simulacion")
-    public String showSimulaciones(Model model) {
-        List<EventoSimulacion> eventos = eventoRepository.findAll();
-        model.addAttribute("eventos", eventos);
-        return "bandeja_simulacion";
+    @PostMapping("/guardar-respuesta")
+    public String guardarRespuesta(
+            @RequestParam Long escenarioId,
+            @RequestParam String respuesta,
+            Model model) {
+        model.addAttribute("escenarioId", escenarioId);
+        model.addAttribute("respuesta", respuesta);
+        return "simulacion/resultado";
+    }
+
+    @GetMapping("/resultado/{simulacionId}")
+    public String verResultado(@PathVariable Long simulacionId, Model model) {
+        model.addAttribute("simulacionId", simulacionId);
+        return "simulacion/resultado";
     }
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar Sesión</title>
+    <title>Registro</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -14,27 +14,27 @@
             align-items: center;
             justify-content: center;
         }
-        .login-container {
+        .register-container {
             width: 100%;
-            max-width: 450px;
+            max-width: 500px;
             padding: 20px;
         }
-        .login-card {
+        .register-card {
             background: white;
             border-radius: 15px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             padding: 40px;
         }
-        .login-header {
+        .register-header {
             text-align: center;
             margin-bottom: 30px;
         }
-        .login-header i {
+        .register-header i {
             font-size: 3rem;
             color: #667eea;
             margin-bottom: 10px;
         }
-        .login-header h2 {
+        .register-header h2 {
             color: #333;
             font-weight: 700;
             margin: 0;
@@ -58,7 +58,7 @@
             border-color: #667eea;
             box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
         }
-        .btn-login {
+        .btn-register {
             width: 100%;
             padding: 12px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -71,21 +71,21 @@
             transition: all 0.3s ease;
             margin-top: 10px;
         }
-        .btn-login:hover {
+        .btn-register:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
-        .login-footer {
+        .register-footer {
             text-align: center;
             margin-top: 20px;
             color: #666;
         }
-        .login-footer a {
+        .register-footer a {
             color: #667eea;
             text-decoration: none;
             font-weight: 600;
         }
-        .login-footer a:hover {
+        .register-footer a:hover {
             text-decoration: underline;
         }
         .alert {
@@ -95,48 +95,69 @@
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <div class="login-card">
-            <div class="login-header">
-                <i class="fas fa-shield-alt"></i>
-                <h2>Iniciar Sesión</h2>
+    <div class="register-container">
+        <div class="register-card">
+            <div class="register-header">
+                <i class="fas fa-user-plus"></i>
+                <h2>Crear Cuenta</h2>
             </div>
 
-            <div th:if="${param.error}" class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>Error:</strong> Usuario o contraseña incorrectos.
+            <div th:if="${mensaje}" class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Éxito:</strong> <span th:text="${mensaje}"></span>
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
 
-            <div th:if="${param.logout}" class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Éxito:</strong> Sesión cerrada correctamente.
+            <div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Error:</strong> <span th:text="${error}"></span>
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
 
-            <form method="POST" action="/login">
+            <form method="POST" action="/auth/registro" id="registroForm">
                 <div class="form-group">
-                    <label class="form-label" for="username">Correo Electrónico</label>
-                    <input type="email" class="form-control" id="username" name="username" required>
+                    <label class="form-label" for="nombre">Nombre Completo</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" required>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label" for="password">Contraseña</label>
-                    <input type="password" class="form-control" id="password" name="password" required>
+                    <label class="form-label" for="correo">Correo Electrónico</label>
+                    <input type="email" class="form-control" id="correo" name="correo" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="contraseña">Contraseña</label>
+                    <input type="password" class="form-control" id="contraseña" name="contraseña" required minlength="6">
+                    <small class="form-text text-muted">Mínimo 6 caracteres</small>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="confirmar">Confirmar Contraseña</label>
+                    <input type="password" class="form-control" id="confirmar" name="confirmar" required minlength="6">
                 </div>
 
                 <div class="form-check mb-3">
-                    <input type="checkbox" class="form-check-input" id="remember" name="remember-me">
-                    <label class="form-check-label" for="remember">Recuérdame</label>
+                    <input type="checkbox" class="form-check-input" id="terminos" name="terminos" required>
+                    <label class="form-check-label" for="terminos">Acepto los términos y condiciones</label>
                 </div>
 
-                <button type="submit" class="btn-login">Iniciar Sesión</button>
+                <button type="submit" class="btn-register">Crear Cuenta</button>
             </form>
 
-            <div class="login-footer">
-                <p>¿No tienes cuenta? <a href="/registro">Regístrate aquí</a></p>
+            <div class="register-footer">
+                <p>¿Ya tienes cuenta? <a href="/login">Inicia sesión aquí</a></p>
             </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('registroForm').addEventListener('submit', function(e) {
+            const pwd = document.getElementById('contraseña').value;
+            const confirm = document.getElementById('confirmar').value;
+            if (pwd !== confirm) {
+                e.preventDefault();
+                alert('Las contraseñas no coinciden');
+            }
+        });
+    </script>
 </body>
 </html>

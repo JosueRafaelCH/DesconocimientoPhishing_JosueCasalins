@@ -1,42 +1,35 @@
 package com.example.SimulatorApp.Controller;
 
-import com.example.SimulatorApp.Model.Dao.PreguntaTestDAOIface;
-import com.example.SimulatorApp.Model.Dao.UsuarioDAOIface;
-import com.example.SimulatorApp.Model.Entity.PreguntaTest;
-import com.example.SimulatorApp.Model.Entity.Usuario;
-import com.example.SimulatorApp.Model.Service.SimiladorService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequestMapping("/tests")
 public class TestController {
 
-    @Autowired
-    private PreguntaTestDAOIface preguntaRepository;
-    @Autowired
-    private SimiladorService simuladorService;
-    @Autowired
-    private UsuarioDAOIface usuarioRepository;
-
-    @GetMapping("/test")
-    public String showTestForm(Model model) {
-        List<PreguntaTest> preguntas = preguntaRepository.findAll();
-        model.addAttribute("preguntas", preguntas);
-        return "test";
+    @GetMapping
+    public String listarTests(Model model) {
+        return "tests/lista";
     }
 
-    @PostMapping("/test/submit")
-    public String submitTest(@RequestParam("respuestas") List<Integer> respuestas, Authentication auth) {
-        String correo = auth.getName();
-        Usuario usuario = usuarioRepository.findByCorreoInstitucional(correo).orElseThrow();
-        simuladorService.saveTestResult(usuario.getId(), respuestas);
-        return "redirect:/dashboard";
+    @GetMapping("/realizar/{testId}")
+    public String realizarTest(@PathVariable Long testId, Model model) {
+        model.addAttribute("testId", testId);
+        return "tests/realizar";
+    }
+
+    @PostMapping("/enviar/{testId}")
+    public String enviarRespuestas(
+            @PathVariable Long testId,
+            @RequestParam(required = false) String respuestas,
+            Model model) {
+        model.addAttribute("testId", testId);
+        return "tests/resultado";
+    }
+
+    @GetMapping("/resultados")
+    public String verResultados(Model model) {
+        return "tests/resultados";
     }
 }
