@@ -1,0 +1,40 @@
+body {
+    background-color: #f4f7f9;
+    color: #333;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.navbar {
+    background-color: #003366;
+    border-bottom: 3px solid #0056b3;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: #ffffff !important;
+}
+
+.card {
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    background-color: #ffffff;
+}
+
+.btn-primary {
+    background-color: #0056b3;
+    border-color: #004a99;
+}
+
+.btn-primary:hover {
+    background-color: #004a99;
+}
+
+.form-control {
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+}
+
+.text-warning {
+    color: #0056b3 !important;
+}

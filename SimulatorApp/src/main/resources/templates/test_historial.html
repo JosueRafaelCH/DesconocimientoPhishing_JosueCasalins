@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout(~{::title}, ~{::#content})}">
+<head>
+    <title>Historial de Tests</title>
+</head>
+<body>
+    <div id="content" class="card p-4">
+        <h2 class="text-warning">Historial de Tests</h2>
+        <div th:if="${tests.empty}" class="alert alert-info">No has realizado ningún test todavía.</div>
+        <table th:unless="${tests.empty}" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Fecha</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="test : ${tests}">
+                    <td th:text="${test.id}">1</td>
+                    <td th:text="${test.fechaRealizacion}">2026-01-01</td>
+                    <td><a th:href="@{/test/resultados/{id}(id=${test.id})}" class="btn btn-sm btn-outline-primary">Ver Resultados</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="/dashboard" class="btn btn-secondary mt-3">Volver al Dashboard</a>
+    </div>
+</body>
+</html>

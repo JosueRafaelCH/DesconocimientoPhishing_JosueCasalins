@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout(~{::title}, ~{::#content})}">
+<head>
+    <title>Formulario de Usuario</title>
+</head>
+<body>
+    <div id="content" class="card p-4 col-md-8 mx-auto">
+        <h2 class="text-warning" th:text="${usuario != null} ? 'Editar Usuario' : 'Nuevo Usuario'">Formulario</h2>
+        <form th:action="${usuario != null} ? @{/admin/usuarios/actualizar} : @{/admin/usuarios/guardar}" method="post">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+            <input type="hidden" name="id" th:value="${usuario?.id}" />
+            <div class="row">
+                <div class="mb-3 col-md-6">
+                    <label class="form-label">Nombres:</label>
+                    <input type="text" name="nombres" class="form-control" th:value="${usuario?.nombres}" required />
+                </div>
+                <div class="mb-3 col-md-6">
+                    <label class="form-label">Apellidos:</label>
+                    <input type="text" name="apellidos" class="form-control" th:value="${usuario?.apellidos}" required />
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Correo:</label>
+                <input type="email" name="correo" class="form-control" th:value="${usuario?.correoInstitucional}" required />
+            </div>
+            <div th:if="${usuario == null}" class="mb-3">
+                <label class="form-label">Contraseña:</label>
+                <input type="password" name="contrasena" class="form-control" required />
+            </div>
+            <div class="row">
+                <div class="mb-3 col-md-4">
+                    <label class="form-label">Rol:</label>
+                    <select name="idRol" class="form-control" required>
+                        <option th:each="r : ${roles}" th:value="${r.id}" th:text="${r.nombreRol}" th:selected="${usuario?.rol?.id == r.id}"></option>
+                    </select>
+                </div>
+                <div class="mb-3 col-md-4">
+                    <label class="form-label">Estado:</label>
+                    <select name="idEstado" class="form-control" required>
+                        <option th:each="e : ${estados}" th:value="${e.id}" th:text="${e.nombreEstado}" th:selected="${usuario?.estado?.id == e.id}"></option>
+                    </select>
+                </div>
+                <div class="mb-3 col-md-4">
+                    <label class="form-label">Estrato:</label>
+                    <select name="idEstrato" class="form-control" required>
+                        <option th:each="e : ${estratos}" th:value="${e.id}" th:text="${e.descripcion}" th:selected="${usuario?.estrato?.id == e.id}"></option>
+                    </select>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Docente Tutor (solo para estudiantes):</label>
+                <select name="idDocenteTutor" class="form-control">
+                    <option value="">Sin tutor</option>
+                    <option th:each="d : ${docentes}" th:value="${d.id}" th:text="${d.nombres + ' ' + d.apellidos + ' (' + d.correoInstitucional + ')'}" th:selected="${usuario?.docenteTutor?.id == d.id}"></option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary" th:text="${usuario != null} ? 'Actualizar' : 'Guardar'">Guardar</button>
+            <a href="/admin/usuarios" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</body>
+</html>

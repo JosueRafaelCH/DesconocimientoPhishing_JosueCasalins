@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout(~{::title}, ~{::#content})}">
+<head>
+    <title>Detalle del Estudiante</title>
+</head>
+<body>
+    <div id="content" class="card p-4">
+        <h2 class="text-warning" th:text="${estudiante.nombres + ' ' + estudiante.apellidos}">Estudiante</h2>
+        <p>Correo: <strong th:text="${estudiante.correoInstitucional}">correo@itm.edu.co</strong></p>
+        <p>Estrato: <strong th:text="${estudiante.estrato.descripcion}">Estrato</strong></p>
+
+        <h3 class="mt-4">Historial de Tests</h3>
+        <div th:if="${resultados.empty}" class="alert alert-info">Este estudiante no ha realizado ningún test.</div>
+        <table th:unless="${resultados.empty}" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID Test</th>
+                    <th>Fecha</th>
+                    <th>Preguntas</th>
+                    <th>Correctas</th>
+                    <th>Puntaje</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="r : ${resultados}">
+                    <td th:text="${r.test.id}">1</td>
+                    <td th:text="${r.test.fechaRealizacion}">2026-01-01</td>
+                    <td th:text="${r.total}">0</td>
+                    <td th:text="${r.correctas}">0</td>
+                    <td>
+                        <span th:text="${r.porcentaje + '%'}" th:classappend="${r.porcentaje >= 60} ? 'text-success fw-bold' : 'text-danger fw-bold'">0%</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="/docente/estudiantes" class="btn btn-secondary mt-3">Volver</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout(~{::title}, ~{::#content})}">
+<head>
+    <title>Mis Estudiantes</title>
+</head>
+<body>
+    <div id="content" class="card p-4">
+        <h2 class="text-warning">Estudiantes a Cargo</h2>
+        <div th:if="${stats.empty}" class="alert alert-info">No tienes estudiantes asignados.</div>
+        <table th:unless="${stats.empty}" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Estrato</th>
+                    <th>Tests</th>
+                    <th>Promedio</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="s : ${stats}">
+                    <td th:text="${s.estudiante.nombres + ' ' + s.estudiante.apellidos}">Nombre</td>
+                    <td th:text="${s.estudiante.correoInstitucional}">correo@itm.edu.co</td>
+                    <td th:text="${s.estudiante.estrato.descripcion}">Estrato</td>
+                    <td th:text="${s.totalTests}">0</td>
+                    <td th:text="${s.promedio + '%'}">0%</td>
+                    <td><a th:href="@{/docente/estudiante/{id}(id=${s.estudiante.id})}" class="btn btn-sm btn-outline-primary">Ver Detalle</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="/docente/panel" class="btn btn-secondary mt-3">Volver al Panel</a>
+    </div>
+</body>
+</html>
