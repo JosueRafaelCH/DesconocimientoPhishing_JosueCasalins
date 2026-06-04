@@ -6,7 +6,7 @@
 
 ## Vista previa
 
-![Prototipo Figma](../../imagenes/Prototipo.png)
+![Prototipo Figma](../../imagenes/prototipo.png)
 
 ## Pantallas incluidas
 
