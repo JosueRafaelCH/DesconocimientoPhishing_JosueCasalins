@@ -104,7 +104,7 @@
    Si excelentes resultados. supo donde estaba el problema y me lo auyudo a corregir.
    
    
-## Entrada #09 — [03-Jun-2026]
+## Entrada #09 — [04-Jun-2026]
 - ¿Qué hice esta semana?
    Organizar proyecto, organizar vistas en sus respectivas carpetas, pasar bitacora, realizar auditoria y pruebas al proyecto.
 - ¿Qué problema encontré? 
