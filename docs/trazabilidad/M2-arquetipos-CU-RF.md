@@ -5,5 +5,5 @@
 | Usuario | usuario / credenciales | CU-01A, CU-01B | RF01, RF02 |
 | Test Diagnóstico | test / resultados | CU-02 | RF04, RF07 |
 | Escenario de Phishing | escenario / plantilla | CU-03 | RF04 |
-| Campaña | grupo / envío | CU-04 | RF10 |
-| Métricas | reportes / estadísticas | CU-06 | RF10 |
+| Interacción de Simulación | interacción / evento | CU-05 | RF04, RF05, RF06, RF07, RF09 |
+| Métricas de Rendimiento | reportes / estadísticas | CU-06 | RF10 |

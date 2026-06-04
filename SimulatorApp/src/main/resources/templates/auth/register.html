@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout(~{::title}, ~{::#content})}">
+<head>
+    <title>Registro de Usuario</title>
+</head>
+<body>
+    <div id="content" class="auth-card">
+        <div class="card-custom">
+            <span class="auth-icon">&#x1f393;</span>
+            <h2>Crear Cuenta</h2>
+            <p class="auth-subtitle">Regístrate como estudiante institucional</p>
+
+            <form th:action="@{/register}" th:object="${registerRequest}" method="post" class="form-custom">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">
+                            <i class="bi bi-person-fill"></i> Nombres
+                        </label>
+                        <input type="text" th:field="*{nombres}" class="form-control" placeholder="Ej. Juan" />
+                        <p class="text-danger small mt-1" th:if="${#fields.hasErrors('nombres')}" th:errors="*{nombres}"></p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">
+                            <i class="bi bi-person-fill"></i> Apellidos
+                        </label>
+                        <input type="text" th:field="*{apellidos}" class="form-control" placeholder="Ej. Pérez" />
+                        <p class="text-danger small mt-1" th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}"></p>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">
+                        <i class="bi bi-envelope-fill"></i> Correo Institucional
+                    </label>
+                    <input type="email" th:field="*{correo}" class="form-control"
+                           placeholder="juan.perez@uniremington.edu.co"
+                           pattern=".*@uniremington\.edu\.co$"
+                           title="Debe ser un correo @uniremington.edu.co" />
+                    <p class="text-danger small mt-1" th:if="${#fields.hasErrors('correo')}" th:errors="*{correo}"></p>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">
+                        <i class="bi bi-lock-fill"></i> Contraseña
+                    </label>
+                    <input type="password" th:field="*{contrasena}" class="form-control" placeholder="Mín. 8 caracteres" />
+                    <p class="text-danger small mt-1" th:if="${#fields.hasErrors('contrasena')}" th:errors="*{contrasena}"></p>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">
+                        <i class="bi bi-person-badge-fill"></i> Rol
+                    </label>
+                    <input type="text" class="form-control" value="Estudiante" readonly style="background:var(--bg-body);" />
+                </div>
+                <div class="mb-4">
+                    <label class="form-label">
+                        <i class="bi bi-layers-fill"></i> Estrato
+                    </label>
+                    <select th:field="*{idEstrato}" class="form-control" required>
+                        <option value="">Seleccione su estrato</option>
+                        <option th:each="e : ${estratos}" th:value="${e.id}" th:text="${e.descripcion}"></option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-custom btn-custom-primary w-100">
+                    <i class="bi bi-person-plus-fill"></i> Registrar Cuenta
+                </button>
+            </form>
+            <div class="text-center mt-3">
+                <a href="/login" class="text-decoration-none" style="color:var(--accent);font-size:0.9rem;">
+                    <i class="bi bi-arrow-left"></i> ¿Ya tienes cuenta? Inicia sesión
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

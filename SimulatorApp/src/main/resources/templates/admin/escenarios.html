@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout(~{::title}, ~{::#content})}">
+<head>
+    <title>Gestión de Escenarios</title>
+</head>
+<body>
+    <div id="content">
+        <div class="page-header d-flex justify-content-between align-items-center">
+            <div>
+                <h2><i class="bi bi-diagram-3-fill"></i> Escenarios</h2>
+                <p>Escenarios de simulación de phishing</p>
+            </div>
+            <a href="/admin/escenarios/nuevo" class="btn btn-custom btn-custom-primary">
+                <i class="bi bi-plus-circle"></i> Nuevo Escenario
+            </a>
+        </div>
+
+        <div th:if="${mensaje}" class="alert-custom alert-custom-success mb-4" th:text="${mensaje}"></div>
+
+        <div class="card-custom">
+            <div class="table-responsive">
+                <table class="table-custom">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Título</th>
+                            <th>Descripción</th>
+                            <th>Nivel</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="e, stat : ${escenarios}">
+                            <td th:text="${stat.count}"></td>
+                            <td th:text="${e.titulo}"></td>
+                            <td th:text="${e.descripcion}"></td>
+                            <td><span class="badge-custom badge-info" th:text="${e.nivel?.nombreNivel}"></span></td>
+                            <td>
+                                <a th:href="@{/admin/escenarios/editar/{id}(id=${e.id})}"
+                                   class="btn btn-custom btn-custom-sm btn-custom-primary">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <a th:href="@{/admin/escenarios/eliminar/{id}(id=${e.id})}"
+                                   class="btn btn-custom btn-custom-sm btn-custom-danger"
+                                   onclick="return confirm('¿Eliminar este escenario?');">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="mt-3">
+            <a href="/admin" class="btn btn-custom btn-custom-secondary">
+                <i class="bi bi-arrow-left"></i> Volver al Panel
+            </a>
+        </div>
+    </div>
+</body>
+</html>

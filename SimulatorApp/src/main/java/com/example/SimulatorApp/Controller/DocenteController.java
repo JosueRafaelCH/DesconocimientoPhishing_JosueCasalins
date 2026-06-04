@@ -1,9 +1,8 @@
 package com.example.SimulatorApp.Controller;
 
-import com.example.SimulatorApp.Model.Entity.RespuestaTest;
-import com.example.SimulatorApp.Model.Entity.TestEvaluativo;
-import com.example.SimulatorApp.Model.Entity.Usuario;
+import com.example.SimulatorApp.Model.Entity.*;
 import com.example.SimulatorApp.Model.Service.SimiladorService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.*;
 
+/**
+ * DocenteController
+ * RF10 - Metricas de rendimiento de estudiantes tutorados
+ * CU-06 - Consultar Metricas de Rendimiento
+ * RNF03 - Panel claro con indicadores visuales
+ * RNF09 - Arquitectura MVC con capas DAO/Service/Controller
+ */
 @Controller
 @RequestMapping("/docente")
 public class DocenteController {
@@ -24,10 +30,11 @@ public class DocenteController {
     }
 
     @GetMapping("/panel")
-    public String panel(Authentication auth, Model model) {
+    public String panel(Authentication auth, Model model, HttpSession session) {
         String correo = auth.getName();
         Usuario docente = simuladorService.buscarUsuarioPorCorreo(correo);
         if (docente == null) return "redirect:/login?error";
+        session.setAttribute("usuario", docente);
 
         List<Usuario> estudiantes = simuladorService.buscarUsuariosPorDocenteTutor(docente.getId());
 
@@ -42,19 +49,17 @@ public class DocenteController {
                 List<RespuestaTest> respuestas = simuladorService.buscarRespuestasPorTest(t.getId());
                 totalPreguntas += respuestas.size();
                 for (RespuestaTest r : respuestas) {
-                    if (r.getOpcion().getEsCorrecta()) totalCorrectas++;
+                    if (Boolean.TRUE.equals(r.getEsCorrecta())) totalCorrectas++;
                 }
             }
         }
 
-        double promedio = totalPreguntas > 0 ? (double) totalCorrectas / totalPreguntas * 100 : 0;
+        double promedio = totalPreguntas > 0 ? (double) totalCorrectas / totalPreguntas * 5.0 : 0;
 
-        model.addAttribute("docente", docente);
-        model.addAttribute("estudiantes", estudiantes);
         model.addAttribute("totalEstudiantes", estudiantes.size());
         model.addAttribute("totalTests", totalTests);
-        model.addAttribute("promedioGlobal", String.format("%.1f", promedio));
-        return "dashboard_docente";
+        model.addAttribute("promedioGlobal", promedio);
+        return "docente/panel";
     }
 
     @GetMapping("/estudiantes")
@@ -76,16 +81,16 @@ public class DocenteController {
                 List<RespuestaTest> respuestas = simuladorService.buscarRespuestasPorTest(t.getId());
                 preguntas += respuestas.size();
                 for (RespuestaTest r : respuestas) {
-                    if (r.getOpcion().getEsCorrecta()) correctas++;
+                    if (Boolean.TRUE.equals(r.getEsCorrecta())) correctas++;
                 }
             }
             s.put("totalTests", total);
-            s.put("promedio", preguntas > 0 ? String.format("%.1f", (double) correctas / preguntas * 100) : "N/A");
+            s.put("promedio", preguntas > 0 ? String.format("%.1f", (double) correctas / preguntas * 5.0) : "N/A");
             stats.add(s);
         }
 
         model.addAttribute("stats", stats);
-        return "docente_estudiantes";
+        return "docente/estudiantes";
     }
 
     @GetMapping("/estudiante/{id}")
@@ -95,22 +100,35 @@ public class DocenteController {
 
         List<TestEvaluativo> tests = simuladorService.buscarTestsPorUsuario(id);
         List<Map<String, Object>> resultados = new ArrayList<>();
+        int aprobados = 0;
+
         for (TestEvaluativo t : tests) {
             Map<String, Object> r = new HashMap<>();
             r.put("test", t);
             List<RespuestaTest> respuestas = simuladorService.buscarRespuestasPorTest(t.getId());
             int correctas = 0;
             for (RespuestaTest rt : respuestas) {
-                if (rt.getOpcion().getEsCorrecta()) correctas++;
+                if (Boolean.TRUE.equals(rt.getEsCorrecta())) correctas++;
             }
             r.put("total", respuestas.size());
             r.put("correctas", correctas);
             r.put("porcentaje", respuestas.size() > 0 ? (correctas * 100 / respuestas.size()) : 0);
             resultados.add(r);
+
+            if (t.getCalificacion() != null && t.getCalificacion() >= 3.0) aprobados++;
         }
+
+        double promedio = tests.stream()
+            .filter(t -> t.getCalificacion() != null)
+            .mapToDouble(TestEvaluativo::getCalificacion)
+            .average().orElse(0.0);
+
+        double tasaAprobacion = tests.size() > 0 ? (double) aprobados / tests.size() * 100 : 0;
 
         model.addAttribute("estudiante", estudiante);
         model.addAttribute("resultados", resultados);
-        return "docente_estudiante_detalle";
+        model.addAttribute("promedio", promedio);
+        model.addAttribute("tasaAprobacion", tasaAprobacion);
+        return "docente/estudiante_detalle";
     }
 }

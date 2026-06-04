@@ -33,11 +33,25 @@ public class TestEvaluativo {
     @JsonManagedReference
     private Usuario usuario;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_nivel")
+    @JsonManagedReference
+    private NivelDificultad nivel;
+
     @Column(name = "fecha_realizacion", nullable = false)
     private LocalDate fechaRealizacion;
 
-    @Column(name = "fecha_actualizacion", nullable = false)
+    @Column(name = "fecha_actualizacion")
     private LocalDate fechaActualizacion;
+
+    @Column(name = "cantidad_preguntas")
+    private Integer cantidadPreguntas;
+
+    @Column(name = "cant_aciertos")
+    private Integer cantAciertos;
+
+    @Column(name = "calificacion")
+    private Double calificacion;
 
     @OneToMany(mappedBy = "test", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonBackReference
@@ -52,81 +66,24 @@ public class TestEvaluativo {
         eventos = new ArrayList<>();
     }
 
-    
-
-    public TestEvaluativo(Integer id, Usuario usuario, LocalDate fechaRealizacion, LocalDate fechaActualizacion,
-            List<RespuestaTest> respuestas, List<EventoSimulacion> eventos) {
-        this.id = id;
-        this.usuario = usuario;
-        this.fechaRealizacion = fechaRealizacion;
-        this.fechaActualizacion = fechaActualizacion;
-        this.respuestas = respuestas;
-        this.eventos = eventos;
-    }
-
-
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public LocalDate getFechaRealizacion() {
-        return fechaRealizacion;
-    }
-
-    public void setFechaRealizacion(LocalDate fechaRealizacion) {
-        this.fechaRealizacion = fechaRealizacion;
-    }
-
-    public LocalDate getFechaActualizacion() {
-        return fechaActualizacion;
-    }
-
-    public void setFechaActualizacion(LocalDate fechaActualizacion) {
-        this.fechaActualizacion = fechaActualizacion;
-    }
-
-    public List<RespuestaTest> getRespuestas() {
-        return respuestas;
-    }
-
-    public void setRespuestas(List<RespuestaTest> respuestas) {
-        this.respuestas = respuestas;
-    }
-
-    public List<EventoSimulacion> getEventos() {
-        return eventos;
-    }
-
-    public void setEventos(List<EventoSimulacion> eventos) {
-        this.eventos = eventos;
-    }
-
-
-
-    @Override
-    public String toString() {
-        return "TestEvaluativo [id=" + id + ", usuario=" + usuario + ", fechaRealizacion=" + fechaRealizacion
-                + ", fechaActualizacion=" + fechaActualizacion + ", respuestas=" + respuestas + ", eventos=" + eventos
-                + "]";
-    }
-
-    
-
-    
-
-
-    
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
+    public Usuario getUsuario() { return usuario; }
+    public void setUsuario(Usuario usuario) { this.usuario = usuario; }
+    public NivelDificultad getNivel() { return nivel; }
+    public void setNivel(NivelDificultad nivel) { this.nivel = nivel; }
+    public LocalDate getFechaRealizacion() { return fechaRealizacion; }
+    public void setFechaRealizacion(LocalDate fechaRealizacion) { this.fechaRealizacion = fechaRealizacion; }
+    public LocalDate getFechaActualizacion() { return fechaActualizacion; }
+    public void setFechaActualizacion(LocalDate fechaActualizacion) { this.fechaActualizacion = fechaActualizacion; }
+    public Integer getCantidadPreguntas() { return cantidadPreguntas; }
+    public void setCantidadPreguntas(Integer cantidadPreguntas) { this.cantidadPreguntas = cantidadPreguntas; }
+    public Integer getCantAciertos() { return cantAciertos; }
+    public void setCantAciertos(Integer cantAciertos) { this.cantAciertos = cantAciertos; }
+    public Double getCalificacion() { return calificacion; }
+    public void setCalificacion(Double calificacion) { this.calificacion = calificacion; }
+    public List<RespuestaTest> getRespuestas() { return respuestas; }
+    public void setRespuestas(List<RespuestaTest> respuestas) { this.respuestas = respuestas; }
+    public List<EventoSimulacion> getEventos() { return eventos; }
+    public void setEventos(List<EventoSimulacion> eventos) { this.eventos = eventos; }
 }

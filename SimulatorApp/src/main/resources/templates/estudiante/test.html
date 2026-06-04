@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout(~{::title}, ~{::#content})}">
+<head>
+    <title>Evaluación de Conocimientos</title>
+</head>
+<body>
+    <div id="content">
+        <div class="page-header">
+            <h2><i class="bi bi-pencil-square"></i> Evaluación de Conocimientos</h2>
+            <p>Selecciona un nivel de dificultad para comenzar</p>
+        </div>
+
+        <div th:if="${mensaje}" class="alert-custom alert-custom-info mb-4" th:text="${mensaje}"></div>
+
+        <div class="row g-4">
+            <div class="col-md-4" th:each="nivel : ${niveles}">
+                <div class="card-custom">
+                    <div class="card-body text-center">
+                        <div style="font-size:2.5rem;margin-bottom:0.5rem;">
+                            <i class="bi bi-bar-chart-fill" th:style="'color:' + (${nivel.id} == 1 ? 'var(--success)' : ${nivel.id} == 2 ? 'var(--warning)' : 'var(--danger)')"></i>
+                        </div>
+                        <h5 class="fw-bold" th:text="${nivel.nombreNivel}">Básico</h5>
+                        <p class="text-secondary small" th:text="${nivel.descripcion}"></p>
+                        <a th:href="@{/test/iniciar/{id}(id=${nivel.id})}" class="btn btn-custom btn-custom-primary mt-2">
+                            <i class="bi bi-play-fill"></i> Iniciar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <a href="/dashboard" class="btn btn-custom btn-custom-secondary">
+                <i class="bi bi-arrow-left"></i> Volver al Panel
+            </a>
+        </div>
+    </div>
+</body>
+</html>

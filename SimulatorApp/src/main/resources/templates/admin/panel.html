@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout(~{::title}, ~{::#content})}">
+<head>
+    <title>Panel de Administración</title>
+</head>
+<body>
+    <div id="content">
+        <div class="page-header">
+            <h2><i class="bi bi-shield-lock-fill"></i> Panel de Administración</h2>
+            <p>Gestión del sistema de simulación de phishing</p>
+        </div>
+
+        <div class="row g-4 mb-4">
+            <div class="col-md-3 col-6">
+                <div class="stat-card">
+                    <div class="stat-number" th:text="${totalUsuarios}">0</div>
+                    <div class="stat-label"><i class="bi bi-people-fill"></i> Usuarios</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="stat-card success">
+                    <div class="stat-number" th:text="${totalPreguntas}">0</div>
+                    <div class="stat-label"><i class="bi bi-question-circle"></i> Preguntas</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="stat-card warning">
+                    <div class="stat-number" th:text="${totalEscenarios}">0</div>
+                    <div class="stat-label"><i class="bi bi-diagram-3"></i> Escenarios</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="stat-card danger">
+                    <div class="stat-number" th:text="${totalTests}">0</div>
+                    <div class="stat-label"><i class="bi bi-send"></i> Tests / Asignaciones</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <a href="/admin/usuarios" class="menu-card">
+                    <span class="menu-icon">&#x1f465;</span>
+                    <h5>Usuarios</h5>
+                    <p>Gestionar administradores, docentes y estudiantes</p>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="/admin/preguntas" class="menu-card">
+                    <span class="menu-icon">&#x2753;</span>
+                    <h5>Preguntas</h5>
+                    <p>Administrar el banco de preguntas</p>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="/admin/escenarios" class="menu-card">
+                    <span class="menu-icon">&#x1f3e0;</span>
+                    <h5>Escenarios</h5>
+                    <p>Crear y editar escenarios de simulación</p>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="/admin/asignar" class="menu-card">
+                    <span class="menu-icon">&#x1f4e8;</span>
+                    <h5>Asignar Escenarios</h5>
+                    <p>Asignar simulaciones a estudiantes</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

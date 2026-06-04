@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout(~{::title}, ~{::#content})}">
+<head>
+    <title>Resultados del Test</title>
+</head>
+<body>
+    <div id="content">
+        <div class="page-header">
+            <h2><i class="bi bi-clipboard-data"></i> Resultados del Test</h2>
+            <p>Realizado el <strong th:text="${#temporals.format(test.fechaRealizacion, 'dd/MM/yyyy HH:mm')}"></strong></p>
+        </div>
+
+        <div class="row g-4 mb-4">
+            <div class="col-md-3 col-6">
+                <div class="stat-card">
+                    <div class="stat-number" th:text="${test.cantidadPreguntas}">0</div>
+                    <div class="stat-label">Preguntas</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="stat-card success">
+                    <div class="stat-number" th:text="${test.cantAciertos}">0</div>
+                    <div class="stat-label">Aciertos</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="stat-card danger">
+                    <div class="stat-number" th:text="${test.cantidadPreguntas - test.cantAciertos}">0</div>
+                    <div class="stat-label">Errores</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="stat-card" th:classappend="${test.calificacion >= 3.0} ? 'success' : 'danger'">
+                    <div class="stat-number" th:text="${#numbers.formatDecimal(test.calificacion, 0, 1)}">0.0</div>
+                    <div class="stat-label">Calificación / 5.0</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <div class="d-flex justify-content-between mb-1">
+                <span class="small fw-bold text-secondary">Progreso</span>
+                <span class="small fw-bold" th:text="${test.cantAciertos} + '/' + ${test.cantidadPreguntas}"></span>
+            </div>
+            <div class="progress-custom">
+                <div class="progress-bar" th:style="'width:' + (${test.cantidadPreguntas > 0} ? (${test.cantAciertos * 100 / test.cantidadPreguntas}) : 0) + '%'"></div>
+            </div>
+        </div>
+
+        <div th:if="${test.calificacion >= 3.0}" class="alert-custom alert-custom-success mb-4">
+            <i class="bi bi-trophy-fill"></i> ¡Felicidades! Has aprobado la evaluación.
+        </div>
+        <div th:unless="${test.calificacion >= 3.0}" class="alert-custom alert-custom-danger mb-4">
+            <i class="bi bi-exclamation-triangle-fill"></i> No has alcanzado la calificación mínima. Sigue practicando.
+        </div>
+
+        <div class="card-custom">
+            <div class="card-body">
+                <h5 class="fw-bold mb-3"><i class="bi bi-list-check"></i> Detalle de Respuestas</h5>
+                <div class="table-responsive">
+                    <table class="table-custom">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Pregunta</th>
+                                <th>Tu Respuesta</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="r, stat : ${respuestas}">
+                                <td th:text="${stat.count}"></td>
+                                <td th:text="${r.opcion?.pregunta?.enunciado ?: r.pregunta?.enunciado}"></td>
+                                <td th:text="${r.opcion?.textoOpcion ?: 'No respondida'}"></td>
+                                <td>
+                                    <span th:if="${r.esCorrecta}" class="badge-custom badge-success">
+                                        <i class="bi bi-check-circle"></i> Correcta
+                                    </span>
+                                    <span th:unless="${r.esCorrecta}" class="badge-custom badge-danger">
+                                        <i class="bi bi-x-circle"></i> Incorrecta
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-4 d-flex gap-2">
+            <a href="/test/historial" class="btn btn-custom btn-custom-secondary">
+                <i class="bi bi-arrow-left"></i> Volver al Historial
+            </a>
+            <a href="/test" class="btn btn-custom btn-custom-primary">
+                <i class="bi bi-arrow-repeat"></i> Realizar otro test
+            </a>
+        </div>
+    </div>
+</body>
+</html>

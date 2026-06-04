@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout(~{::title}, ~{::#content})}">
+<head>
+    <title>Detalle del Estudiante</title>
+</head>
+<body>
+    <div id="content">
+        <div class="page-header">
+            <h2><i class="bi bi-person-fill"></i> Detalle del Estudiante</h2>
+            <p><strong th:text="${estudiante.nombres} + ' ' + ${estudiante.apellidos}"></strong> &mdash; <span th:text="${estudiante.correoInstitucional}"></span></p>
+        </div>
+
+        <div class="row g-4 mb-4">
+            <div class="col-md-4">
+                <div class="stat-card">
+                    <div class="stat-number" th:text="${#lists.size(resultados)}">0</div>
+                    <div class="stat-label">Tests Realizados</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-card success">
+                    <div class="stat-number" th:text="${#numbers.formatDecimal(promedio, 0, 1)}">0.0</div>
+                    <div class="stat-label">Promedio / 5.0</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-card" th:classappend="${tasaAprobacion >= 50} ? 'success' : 'danger'">
+                    <div class="stat-number" th:text="${#numbers.formatDecimal(tasaAprobacion, 0, 0)} + '%'">0%</div>
+                    <div class="stat-label">Tasa de Aprobación</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-custom">
+            <div class="card-body">
+                <h5 class="fw-bold mb-3"><i class="bi bi-clock-history"></i> Historial de Tests</h5>
+                <div th:if="${#lists.isEmpty(resultados)}" class="text-secondary small">Este estudiante no ha realizado ningún test.</div>
+                <div class="table-responsive" th:unless="${#lists.isEmpty(resultados)}">
+                    <table class="table-custom">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Preguntas</th>
+                                <th>Aciertos</th>
+                                <th>Calificación</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="r : ${resultados}">
+                                <td th:text="${#temporals.format(r.test?.fechaRealizacion, 'dd/MM/yyyy')}"></td>
+                                <td th:text="${r.total}"></td>
+                                <td th:text="${r.correctas}"></td>
+                                <td>
+                                    <span th:classappend="${r.test?.calificacion >= 3.0} ? 'badge-custom badge-success' : 'badge-custom badge-danger'"
+                                          th:text="${#numbers.formatDecimal(r.test?.calificacion, 0, 1)}">
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-3">
+            <a href="/docente/estudiantes" class="btn btn-custom btn-custom-secondary">
+                <i class="bi bi-arrow-left"></i> Volver a Lista
+            </a>
+            <a href="/docente/panel" class="btn btn-custom btn-custom-secondary">
+                <i class="bi bi-house"></i> Panel Docente
+            </a>
+        </div>
+    </div>
+</body>
+</html>

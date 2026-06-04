@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout(~{::title}, ~{::#content})}">
+<head>
+    <title>Gestión de Usuarios</title>
+</head>
+<body>
+    <div id="content">
+        <div class="page-header d-flex justify-content-between align-items-center">
+            <div>
+                <h2><i class="bi bi-people-fill"></i> Usuarios</h2>
+                <p>Gestión de todos los usuarios del sistema</p>
+            </div>
+            <a href="/admin/usuarios/nuevo" class="btn btn-custom btn-custom-primary">
+                <i class="bi bi-person-plus"></i> Nuevo Usuario
+            </a>
+        </div>
+
+        <div th:if="${mensaje}" class="alert-custom alert-custom-success mb-4" th:text="${mensaje}"></div>
+
+        <div class="card-custom">
+            <div class="table-responsive">
+                <table class="table-custom">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th>Rol</th>
+                            <th>Estrato</th>
+                            <th>Estado</th>
+                            <th>Docente Tutor</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="u : ${usuarios}">
+                            <td th:text="${u.nombres} + ' ' + ${u.apellidos}"></td>
+                            <td th:text="${u.correoInstitucional}"></td>
+                            <td><span class="badge-custom badge-info" th:text="${u.rol?.nombreRol}"></span></td>
+                            <td th:text="${u.estrato?.descripcion ?: '---'}"></td>
+                            <td><span class="badge-custom badge-info" th:text="${u.estado?.nombreEstado}"></span></td>
+                            <td th:text="${u.docenteTutor?.nombres ?: '---'}"></td>
+                            <td>
+                                <a th:href="@{/admin/usuarios/editar/{id}(id=${u.id})}"
+                                   class="btn btn-custom btn-custom-sm btn-custom-primary">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <a th:href="@{/admin/usuarios/eliminar/{id}(id=${u.id})}"
+                                   class="btn btn-custom btn-custom-sm btn-custom-danger"
+                                   onclick="return confirm('¿Eliminar este usuario?');">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="mt-3">
+            <a href="/admin" class="btn btn-custom btn-custom-secondary">
+                <i class="bi bi-arrow-left"></i> Volver al Panel
+            </a>
+        </div>
+    </div>
+</body>
+</html>

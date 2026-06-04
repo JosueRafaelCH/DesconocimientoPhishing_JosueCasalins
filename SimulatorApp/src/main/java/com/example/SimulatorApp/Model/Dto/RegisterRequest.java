@@ -14,7 +14,7 @@ public class RegisterRequest {
     private String apellidos;
 
     @NotBlank(message = "El correo es obligatorio")
-    @Pattern(regexp = "^[A-Za-z0-9+_.-]+@itm\\.edu\\.co$", message = "Debe ser un correo institucional (@itm.edu.co)")
+    @Pattern(regexp = "^[A-Za-z0-9+_.-]+@uniremington\\.edu\\.co$", message = "Debe ser un correo institucional (@uniremington.edu.co)")
     private String correo;
 
     @NotBlank(message = "La contraseña es obligatoria")

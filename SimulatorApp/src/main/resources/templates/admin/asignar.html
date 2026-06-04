@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout(~{::title}, ~{::#content})}">
+<head>
+    <title>Asignar Escenarios</title>
+</head>
+<body>
+    <div id="content">
+        <div class="page-header">
+            <h2><i class="bi bi-send-fill"></i> Asignar Simulaciones</h2>
+            <p>Asigna escenarios de phishing a estudiantes</p>
+        </div>
+
+        <div th:if="${mensaje}" class="alert-custom alert-custom-success mb-4" th:text="${mensaje}"></div>
+
+        <div class="row g-4">
+            <div class="col-md-5">
+                <div class="card-custom">
+                    <div class="card-body">
+                        <h5 class="fw-bold mb-3"><i class="bi bi-plus-circle"></i> Nueva Asignación</h5>
+                        <form action="/admin/asignar/guardar" method="post" class="form-custom">
+                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                            <div class="mb-3">
+                                <label class="form-label">Estudiante</label>
+                                <select name="idUsuario" class="form-control" required>
+                                    <option value="">Seleccione un estudiante</option>
+                                    <option th:each="u : ${usuarios}" th:value="${u.id}"
+                                            th:text="${u.nombres} + ' ' + ${u.apellidos} + ' (' + ${u.correoInstitucional} + ')'"></option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Escenario</label>
+                                <select name="idEscenario" class="form-control" required>
+                                    <option value="">Seleccione un escenario</option>
+                                    <option th:each="e : ${escenarios}" th:value="${e.id}"
+                                            th:text="${e.titulo} + ' (' + ${e.nivel?.nombreNivel} + ')'"></option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Estado</label>
+                                <select name="idEstadoEvento" class="form-control" required>
+                                    <option value="">Seleccione estado</option>
+                                    <option th:each="ee : ${estadosEvento}" th:value="${ee.id}" th:text="${ee.nombreEstado}"
+                                            th:selected="${ee.id == 1}"></option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-custom btn-custom-primary w-100">
+                                <i class="bi bi-send"></i> Asignar
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-7">
+                <div class="card-custom">
+                    <div class="card-body">
+                        <h5 class="fw-bold mb-3"><i class="bi bi-list"></i> Asignaciones Existentes</h5>
+                        <div th:if="${#lists.isEmpty(eventos)}" class="empty-state">
+                            <p class="small mb-0">No hay asignaciones registradas.</p>
+                        </div>
+                        <div class="table-responsive" th:unless="${#lists.isEmpty(eventos)}">
+                            <table class="table-custom">
+                                <thead>
+                                    <tr>
+                                        <th>Estudiante</th>
+                                        <th>Escenario</th>
+                                        <th>Fecha</th>
+                                        <th>Estado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="ev : ${eventos}">
+                                        <td class="small" th:text="${ev.usuario?.nombres} + ' ' + ${ev.usuario?.apellidos}"></td>
+                                        <td class="small" th:text="${ev.escenario?.titulo}"></td>
+                                        <td class="small" th:text="${#temporals.format(ev.fechaEnvio, 'dd/MM/yyyy')}"></td>
+                                        <td>
+                                            <span class="badge-custom" th:classappend="${ev.interaccion?.fechaDatosIngresados != null} ? 'badge-success' : 'badge-warning'"
+                                                  th:text="${ev.interaccion?.fechaDatosIngresados != null} ? 'Completado' : 'Pendiente'">
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-3">
+            <a href="/admin" class="btn btn-custom btn-custom-secondary">
+                <i class="bi bi-arrow-left"></i> Volver al Panel
+            </a>
+        </div>
+    </div>
+</body>
+</html>

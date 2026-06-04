@@ -40,11 +40,11 @@ public class DataLoader {
 
             Role adminRole = roleRepository.findByNombreRol("Admin");
 
-            if (usuarioRepository.findByCorreoInstitucional("admin@itm.edu.co").isEmpty()) {
+            if (usuarioRepository.findByCorreoInstitucional("admin@uniremington.edu.co").isEmpty()) {
                 Usuario admin = new Usuario();
                 admin.setNombres("Admin");
                 admin.setApellidos("Sistema");
-                admin.setCorreoInstitucional("admin@itm.edu.co");
+                admin.setCorreoInstitucional("admin@uniremington.edu.co");
                 admin.setContrasenaHash(passwordEncoder.encode("Admin123!"));
                 admin.setRol(adminRole);
                 admin.setEstado(estadoRepository.findAll().get(0));
@@ -54,11 +54,11 @@ public class DataLoader {
                 usuarioRepository.save(admin);
             }
 
-            if (usuarioRepository.findByCorreoInstitucional("admin2@itm.edu.co").isEmpty()) {
+            if (usuarioRepository.findByCorreoInstitucional("admin2@uniremington.edu.co").isEmpty()) {
                 Usuario admin2 = new Usuario();
                 admin2.setNombres("Admin2");
                 admin2.setApellidos("Seguridad");
-                admin2.setCorreoInstitucional("admin2@itm.edu.co");
+                admin2.setCorreoInstitucional("admin2@uniremington.edu.co");
                 admin2.setContrasenaHash(passwordEncoder.encode("Admin456!"));
                 admin2.setRol(adminRole);
                 admin2.setEstado(estadoRepository.findAll().get(0));
@@ -71,11 +71,11 @@ public class DataLoader {
             Role docenteRole = roleRepository.findByNombreRol("Docente");
 
             Usuario docente = null;
-            if (usuarioRepository.findByCorreoInstitucional("docente@itm.edu.co").isEmpty()) {
+            if (usuarioRepository.findByCorreoInstitucional("docente@uniremington.edu.co").isEmpty()) {
                 docente = new Usuario();
                 docente.setNombres("Carlos");
                 docente.setApellidos("Mendoza");
-                docente.setCorreoInstitucional("docente@itm.edu.co");
+                docente.setCorreoInstitucional("docente@uniremington.edu.co");
                 docente.setContrasenaHash(passwordEncoder.encode("Docente123!"));
                 docente.setRol(docenteRole);
                 docente.setEstado(estadoRepository.findAll().get(0));
@@ -84,12 +84,42 @@ public class DataLoader {
                 docente.setFechaActualizacion(LocalDate.now());
                 docente = usuarioRepository.save(docente);
             } else {
-                docente = usuarioRepository.findByCorreoInstitucional("docente@itm.edu.co").get();
+                docente = usuarioRepository.findByCorreoInstitucional("docente@uniremington.edu.co").get();
             }
 
             // Asignar estudiantes sin tutor al docente
             if (docente != null) {
                 Role estudianteRole = roleRepository.findByNombreRol("Estudiante");
+
+                // Crear estudiantes de prueba si no existen
+                String[][] estudiantesSeed = {
+                    {"Juan", "Pérez", "juan.perez@uniremington.edu.co", "Estudiante123!", "3"},
+                    {"María", "Gómez", "maria.gomez@uniremington.edu.co", "Estudiante123!", "2"},
+                    {"Carlos", "López", "carlos.lopez@uniremington.edu.co", "Estudiante123!", "4"},
+                    {"Ana", "Martínez", "ana.martinez@uniremington.edu.co", "Estudiante123!", "1"},
+                    {"Pedro", "Ramírez", "pedro.ramirez@uniremington.edu.co", "Estudiante123!", "5"},
+                    {"Laura", "Torres", "laura.torres@uniremington.edu.co", "Estudiante123!", "3"},
+                    {"Diego", "Herrera", "diego.herrera@uniremington.edu.co", "Estudiante123!", "2"},
+                    {"Sofía", "Castro", "sofia.castro@uniremington.edu.co", "Estudiante123!", "4"},
+                };
+
+                for (String[] s : estudiantesSeed) {
+                    if (usuarioRepository.findByCorreoInstitucional(s[2]).isEmpty()) {
+                        Usuario est = new Usuario();
+                        est.setNombres(s[0]);
+                        est.setApellidos(s[1]);
+                        est.setCorreoInstitucional(s[2]);
+                        est.setContrasenaHash(passwordEncoder.encode(s[3]));
+                        est.setRol(estudianteRole);
+                        est.setEstado(estadoRepository.findAll().get(0));
+                        est.setEstrato(estratoRepository.findById(Integer.parseInt(s[4])).orElse(null));
+                        est.setDocenteTutor(docente);
+                        est.setFechaRegistro(LocalDate.now());
+                        est.setFechaActualizacion(LocalDate.now());
+                        usuarioRepository.save(est);
+                    }
+                }
+
                 for (Usuario u : usuarioRepository.findByRolId(estudianteRole.getId())) {
                     if (u.getDocenteTutor() == null) {
                         u.setDocenteTutor(docente);

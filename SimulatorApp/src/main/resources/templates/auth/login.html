@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout(~{::title}, ~{::#content})}">
+<head>
+    <title>Acceso al Sistema</title>
+</head>
+<body>
+    <div id="content" class="auth-card">
+        <div class="card-custom">
+            <span class="auth-icon">&#x1f510;</span>
+            <h2>Iniciar Sesión</h2>
+            <p class="auth-subtitle">Accede al simulador de phishing institucional</p>
+
+            <div th:if="${param.error}" class="alert-custom alert-custom-danger mb-3 alert-auto-hide">
+                <i class="bi bi-exclamation-triangle-fill"></i>
+                Correo o contraseña incorrectos.
+            </div>
+            <div th:if="${param.logout}" class="alert-custom alert-custom-success mb-3 alert-auto-hide">
+                <i class="bi bi-check-circle-fill"></i>
+                Has cerrado sesión correctamente.
+            </div>
+
+            <form th:action="@{/login}" method="post" class="form-custom">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                <div class="mb-3">
+                    <label class="form-label">
+                        <i class="bi bi-envelope-fill"></i> Correo Institucional
+                    </label>
+                    <input type="email" name="correo" class="form-control"
+                           placeholder="juan.perez@uniremington.edu.co" required />
+                </div>
+                <div class="mb-4">
+                    <label class="form-label">
+                        <i class="bi bi-lock-fill"></i> Contraseña
+                    </label>
+                    <input type="password" name="contrasena" class="form-control"
+                           placeholder="********" required />
+                </div>
+                <button type="submit" class="btn btn-custom btn-custom-primary w-100">
+                    <i class="bi bi-box-arrow-in-right"></i> Ingresar
+                </button>
+            </form>
+            <div class="text-center mt-3">
+                <a href="/register" class="text-decoration-none" style="color:var(--accent);font-size:0.9rem;">
+                    <i class="bi bi-person-plus"></i> ¿No tienes cuenta? Regístrate
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

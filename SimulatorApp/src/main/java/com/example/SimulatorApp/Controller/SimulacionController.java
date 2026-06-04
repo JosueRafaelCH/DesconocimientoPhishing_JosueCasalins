@@ -12,6 +12,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * SimulacionController
+ * RF04 - Ejecucion de simulaciones de phishing
+ * RF05 - Retroalimentacion inmediata tras cada interaccion
+ * RF07 - Registro de desempeno (fecha, tipo, resultado)
+ * CU-05 - Procesar Interaccion de Simulacion
+ * RNF02 - Datos ficticios sin informacion real del usuario
+ * RNF03 - Interfaz clara con mensajes educativos
+ * RNF04 - Tiempo de carga < 3s (sin llamadas externas)
+ */
 @Controller
 public class SimulacionController {
 
@@ -21,24 +31,21 @@ public class SimulacionController {
         this.simuladorService = simuladorService;
     }
 
-    @GetMapping("/simulacion")
+    @GetMapping("/simulaciones")
     public String showSimulaciones(Authentication auth, Model model) {
         String correo = auth.getName();
         Usuario usuario = simuladorService.buscarUsuarioPorCorreo(correo);
         if (usuario == null) return "redirect:/login?error";
 
         List<EventoSimulacion> eventos = simuladorService.buscarEventosPorUsuario(usuario.getId());
-        List<EscenarioPhishing> escenariosDisponibles = simuladorService.buscarEscenariosTodos();
-
         model.addAttribute("eventos", eventos);
-        model.addAttribute("escenarios", escenariosDisponibles);
-        return "bandeja_simulacion";
+        return "estudiante/simulaciones";
     }
 
-    @GetMapping("/simulacion/{id}/interactuar")
+    @GetMapping("/simulaciones/interactuar/{id}")
     public String interactuar(@PathVariable Integer id, Model model) {
         EventoSimulacion evento = simuladorService.buscarEventoPorId(id);
-        if (evento == null) return "redirect:/simulacion";
+        if (evento == null) return "redirect:/simulaciones";
 
         InteraccionPhishing interaccion = simuladorService.buscarInteraccionPorEvento(id);
         List<FeedbackIA> feedbacks = null;
@@ -49,13 +56,13 @@ public class SimulacionController {
         model.addAttribute("evento", evento);
         model.addAttribute("interaccion", interaccion);
         model.addAttribute("feedbacks", feedbacks);
-        return "simulacion_interactiva";
+        return "estudiante/simulacion_interactiva";
     }
 
-    @PostMapping("/simulacion/{id}/clic")
+    @PostMapping("/simulaciones/clic/{id}")
     public String registrarClic(@PathVariable Integer id) {
         EventoSimulacion evento = simuladorService.buscarEventoPorId(id);
-        if (evento == null) return "redirect:/simulacion";
+        if (evento == null) return "redirect:/simulaciones";
 
         InteraccionPhishing interaccion = simuladorService.buscarInteraccionPorEvento(id);
         if (interaccion == null) {
@@ -65,13 +72,20 @@ public class SimulacionController {
         interaccion.setFechaClic(LocalDate.now());
         simuladorService.guardarInteraccion(interaccion);
 
-        return "redirect:/simulacion/" + id + "/interactuar";
+        FeedbackIA feedback = new FeedbackIA();
+        feedback.setInteraccion(interaccion);
+        feedback.setContenidoFeedback("Hiciste clic en un enlace sospechoso. Recuerda: antes de hacer clic, verifica la URL completa y asegúrate de que pertenece al dominio oficial.");
+        feedback.setFechaGeneracion(LocalDate.now());
+        feedback.setModeloIa("Sistema Interno v1.0");
+        simuladorService.guardarFeedback(feedback);
+
+        return "redirect:/simulaciones/interactuar/" + id;
     }
 
-    @PostMapping("/simulacion/{id}/datos")
+    @PostMapping("/simulaciones/datos/{id}")
     public String ingresarDatos(@PathVariable Integer id) {
         EventoSimulacion evento = simuladorService.buscarEventoPorId(id);
-        if (evento == null) return "redirect:/simulacion";
+        if (evento == null) return "redirect:/simulaciones";
 
         InteraccionPhishing interaccion = simuladorService.buscarInteraccionPorEvento(id);
         if (interaccion == null) {
@@ -83,11 +97,11 @@ public class SimulacionController {
 
         FeedbackIA feedback = new FeedbackIA();
         feedback.setInteraccion(interaccion);
-        feedback.setContenidoFeedback("Has interactuado con un escenario de phishing. Recuerda siempre verificar la URL y el remitente antes de proporcionar información personal.");
+        feedback.setContenidoFeedback("Ingresaste datos personales en un formulario. Nunca compartas información sensible como contraseñas, números de documento o datos bancarios en sitios no verificados.");
         feedback.setFechaGeneracion(LocalDate.now());
         feedback.setModeloIa("Sistema Interno v1.0");
         simuladorService.guardarFeedback(feedback);
 
-        return "redirect:/simulacion/" + id + "/interactuar";
+        return "redirect:/simulaciones/interactuar/" + id;
     }
 }

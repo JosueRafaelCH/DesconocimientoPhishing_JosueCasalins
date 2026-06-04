@@ -36,55 +36,19 @@ public class RespuestaTest {
     @JsonManagedReference
     private OpcionPregunta opcion;
 
-    public RespuestaTest() {
+    @Column(name = "es_correcta")
+    private Boolean esCorrecta;
 
-    }
+    public RespuestaTest() {}
 
-    public RespuestaTest(Integer id, TestEvaluativo test, PreguntaTest pregunta, OpcionPregunta opcion) {
-        this.id = id;
-        this.test = test;
-        this.pregunta = pregunta;
-        this.opcion = opcion;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public TestEvaluativo getTest() {
-        return test;
-    }
-
-    public void setTest(TestEvaluativo test) {
-        this.test = test;
-    }
-
-    public PreguntaTest getPregunta() {
-        return pregunta;
-    }
-
-    public void setPregunta(PreguntaTest pregunta) {
-        this.pregunta = pregunta;
-    }
-
-    public OpcionPregunta getOpcion() {
-        return opcion;
-    }
-
-    public void setOpcion(OpcionPregunta opcion) {
-        this.opcion = opcion;
-    }
-
-    @Override
-    public String toString() {
-        return "RespuestaTest [id=" + id + ", test=" + test + ", pregunta=" + pregunta + ", opcion=" + opcion + "]";
-    }
-
-    
-
-    
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
+    public TestEvaluativo getTest() { return test; }
+    public void setTest(TestEvaluativo test) { this.test = test; }
+    public PreguntaTest getPregunta() { return pregunta; }
+    public void setPregunta(PreguntaTest pregunta) { this.pregunta = pregunta; }
+    public OpcionPregunta getOpcion() { return opcion; }
+    public void setOpcion(OpcionPregunta opcion) { this.opcion = opcion; }
+    public Boolean getEsCorrecta() { return esCorrecta; }
+    public void setEsCorrecta(Boolean esCorrecta) { this.esCorrecta = esCorrecta; }
 }

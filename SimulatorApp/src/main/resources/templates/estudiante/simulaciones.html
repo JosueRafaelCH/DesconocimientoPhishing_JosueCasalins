@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout(~{::title}, ~{::#content})}">
+<head>
+    <title>Simulaciones de Phishing</title>
+</head>
+<body>
+    <div id="content">
+        <div class="page-header">
+            <h2><i class="bi bi-shield-shaded"></i> Simulaciones de Phishing</h2>
+            <p>Escenarios de simulación asignados para tu aprendizaje</p>
+        </div>
+
+        <div th:if="${#lists.isEmpty(eventos)}" class="empty-state">
+            <div class="empty-icon">&#x1f4cb;</div>
+            <p>No tienes simulaciones asignadas.</p>
+        </div>
+
+        <div th:unless="${#lists.isEmpty(eventos)}">
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4" th:each="ev : ${eventos}">
+                    <div class="card-custom">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span th:if="${ev.interaccion?.fechaDatosIngresados != null or ev.interaccion?.fechaClic != null}" class="badge-custom badge-success">Interactuado</span>
+                                <span th:unless="${ev.interaccion?.fechaDatosIngresados != null or ev.interaccion?.fechaClic != null}" class="badge-custom badge-warning">Pendiente</span>
+                                <span class="badge-custom badge-info" th:text="${ev.escenario?.nivel?.nombreNivel}"></span>
+                            </div>
+                            <h5 class="fw-bold" th:text="${ev.escenario?.titulo}">Escenario</h5>
+                            <p class="small text-secondary" th:text="${ev.escenario?.descripcion}"></p>
+                            <p class="small mb-0 text-secondary">
+                                <i class="bi bi-calendar"></i> Asignado: <span th:text="${#temporals.format(ev.fechaEnvio, 'dd/MM/yyyy')}"></span>
+                            </p>
+                            <a th:href="@{/simulaciones/interactuar/{id}(id=${ev.id})}"
+                               class="btn btn-custom btn-custom-primary mt-3 w-100">
+                                <i class="bi bi-play-fill"></i> Interactuar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <a href="/dashboard" class="btn btn-custom btn-custom-secondary">
+                <i class="bi bi-arrow-left"></i> Volver al Panel
+            </a>
+        </div>
+    </div>
+</body>
+</html>

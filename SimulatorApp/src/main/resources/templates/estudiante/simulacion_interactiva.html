@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout(~{::title}, ~{::#content})}">
+<head>
+    <title>Simulación Interactiva</title>
+</head>
+<body>
+    <div id="content">
+        <div class="page-header">
+            <h2><i class="bi bi-shield-fill-check"></i> Simulación Interactiva</h2>
+            <p><strong th:text="${evento.escenario?.titulo}"></strong> &mdash; <span class="badge-custom badge-info" th:text="${evento.escenario?.nivel?.nombreNivel}"></span></p>
+        </div>
+
+        <div th:if="${mensaje}" class="alert-custom alert-custom-info mb-4" th:text="${mensaje}"></div>
+
+        <div class="card-custom mb-4">
+            <div class="card-body">
+                <h5 class="fw-bold"><i class="bi bi-info-circle"></i> Contexto del Escenario</h5>
+                <p th:text="${evento.escenario?.descripcion}"></p>
+                <hr>
+                <p class="small text-secondary"><i class="bi bi-lightbulb"></i> Analiza la situación y decide cómo actuar.</p>
+            </div>
+        </div>
+
+        <div th:if="${interaccion != null}" class="card-custom mb-4">
+            <div class="card-body">
+                <h5 class="fw-bold mb-3" style="color:var(--accent);"><i class="bi bi-chat-dots"></i> Tu interacción</h5>
+                <div th:if="${interaccion.fechaClic}" class="alert-custom alert-custom-info mb-2">
+                    <i class="bi bi-hand-index"></i> <strong>Click registrado:</strong> <span th:text="${#temporals.format(interaccion.fechaClic, 'dd/MM/yyyy')}"></span>
+                </div>
+                <div th:if="${interaccion.fechaDatosIngresados}" class="alert-custom alert-custom-danger mb-2">
+                    <i class="bi bi-exclamation-triangle"></i> <strong>Datos ingresados:</strong> <span th:text="${#temporals.format(interaccion.fechaDatosIngresados, 'dd/MM/yyyy')}"></span>
+                </div>
+            </div>
+        </div>
+
+        <div th:if="${feedbacks != null and !#lists.isEmpty(feedbacks)}" class="card-custom mb-4">
+            <div class="card-body">
+                <h5 class="fw-bold mb-3" style="color:var(--accent);"><i class="bi bi-chat-dots"></i> Retroalimentación</h5>
+                <div th:each="fb : ${feedbacks}" class="alert-custom alert-custom-info mb-2">
+                    <p class="mb-1" th:text="${fb.contenidoFeedback}"></p>
+                    <small class="text-secondary" th:text="${#temporals.format(fb.fechaGeneracion, 'dd/MM/yyyy')} + ' · ' + ${fb.modeloIa}"></small>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-3">
+            <div class="col-md-6">
+                <form th:action="@{/simulaciones/clic/{id}(id=${evento.id})}" method="post" class="interaction-card">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                    <p class="small text-secondary mb-3">Haz clic en el enlace simulado para ver qué sucede</p>
+                    <button type="submit" class="action-btn warning">
+                        <i class="bi bi-hand-index-thumb"></i> Simular clic en enlace
+                    </button>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <form th:action="@{/simulaciones/datos/{id}(id=${evento.id})}" method="post" class="interaction-card">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                    <p class="small text-secondary mb-3">Simula el ingreso de datos personales en un formulario</p>
+                    <button type="submit" class="action-btn danger">
+                        <i class="bi bi-keyboard"></i> Simular ingreso de datos
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <a href="/simulaciones" class="btn btn-custom btn-custom-secondary">
+                <i class="bi bi-arrow-left"></i> Volver a simulaciones
+            </a>
+        </div>
+    </div>
+</body>
+</html>
