@@ -2,65 +2,65 @@
 
 Wireframes de baja fidelidad del Simulador de Phishing — Corporación Universitaria Remington.
 
-Para visualizar, abre cada archivo HTML en un navegador.
-
 ---
 
 ## Autenticación (públicas)
 
-| Vista | Archivo | Descripción |
-|-------|---------|-------------|
-| Login | [`auth-login.html`](../../imagenes/wireframes/auth-login.html) | Inicio de sesión con correo y contraseña |
-| Registro | [`auth-register.html`](../../imagenes/wireframes/auth-register.html) | Creación de cuenta con datos personales |
-| Recuperar contraseña | [`auth-recuperar-contrasena.html`](../../imagenes/wireframes/auth-recuperar-contrasena.html) | Solicitud de enlace de recuperación |
-| Restablecer contraseña | [`auth-restablecer-contrasena.html`](../../imagenes/wireframes/auth-restablecer-contrasena.html) | Formulario de nueva contraseña |
+| Vista | Descripción | Wireframe |
+|-------|-------------|-----------|
+| Login | Inicio de sesión con correo y contraseña | ![Login](../imagenes/screenshots/auth-login.png) |
+| Registro | Creación de cuenta con datos personales | ![Registro](../imagenes/screenshots/auth-register.png) |
+| Recuperar contraseña | Solicitud de enlace de recuperación | ![Recuperar contraseña](../imagenes/screenshots/auth-recuperar-contrasena.png) |
+| Restablecer contraseña | Formulario de nueva contraseña | ![Restablecer contraseña](../imagenes/screenshots/auth-restablecer-contrasena.png) |
 
 ## Administración
 
-| Vista | Archivo | Descripción |
-|-------|---------|-------------|
-| Panel | [`admin-panel.html`](../../imagenes/wireframes/admin-panel.html) | Dashboard con estadísticas globales |
-| Usuarios | [`admin-usuarios.html`](../../imagenes/wireframes/admin-usuarios.html) | Lista de usuarios del sistema |
-| Usuario form | [`admin-usuario-form.html`](../../imagenes/wireframes/admin-usuario-form.html) | Crear / Editar usuario |
-| Preguntas | [`admin-preguntas.html`](../../imagenes/wireframes/admin-preguntas.html) | Lista de preguntas de diagnóstico |
-| Pregunta form | [`admin-pregunta-form.html`](../../imagenes/wireframes/admin-pregunta-form.html) | Crear / Editar pregunta |
-| Escenarios | [`admin-escenarios.html`](../../imagenes/wireframes/admin-escenarios.html) | Lista de escenarios de phishing |
-| Escenario form | [`admin-escenario-form.html`](../../imagenes/wireframes/admin-escenario-form.html) | Crear / Editar escenario |
-| Asignar simulación | [`admin-asignar.html`](../../imagenes/wireframes/admin-asignar.html) | Asignar simulación a usuario |
-| Campañas | [`admin-campanas.html`](../../imagenes/wireframes/admin-campanas.html) | Lista de campañas institucionales |
-| Campaña form | [`admin-campana-form.html`](../../imagenes/wireframes/admin-campana-form.html) | Crear / Editar campaña |
+| Vista | Descripción | Wireframe |
+|-------|-------------|-----------|
+| Panel | Dashboard con estadísticas globales | ![Panel admin](../imagenes/screenshots/admin-panel.png) |
+| Usuarios | Lista de usuarios del sistema | ![Usuarios](../imagenes/screenshots/admin-usuarios.png) |
+| Usuario form | Crear / Editar usuario | ![Usuario form](../imagenes/screenshots/admin-usuario-form.png) |
+| Preguntas | Lista de preguntas de diagnóstico | ![Preguntas](../imagenes/screenshots/admin-preguntas.png) |
+| Pregunta form | Crear / Editar pregunta | ![Pregunta form](../imagenes/screenshots/admin-pregunta-form.png) |
+| Escenarios | Lista de escenarios de phishing | ![Escenarios](../imagenes/screenshots/admin-escenarios.png) |
+| Escenario form | Crear / Editar escenario | ![Escenario form](../imagenes/screenshots/admin-escenario-form.png) |
+| Asignar simulación | Asignar simulación a usuario | ![Asignar](../imagenes/screenshots/admin-asignar.png) |
+| Campañas | Lista de campañas institucionales | ![Campañas](../imagenes/screenshots/admin-campanas.png) |
+| Campaña form | Crear / Editar campaña | ![Campaña form](../imagenes/screenshots/admin-campana-form.png) |
 
 ## Docente
 
-| Vista | Archivo | Descripción |
-|-------|---------|-------------|
-| Panel | [`docente-panel.html`](../../imagenes/wireframes/docente-panel.html) | Dashboard con métricas de estudiantes tutorados |
-| Estudiantes | [`docente-estudiantes.html`](../../imagenes/wireframes/docente-estudiantes.html) | Lista de estudiantes con progreso |
-| Detalle estudiante | [`docente-estudiante-detalle.html`](../../imagenes/wireframes/docente-estudiante-detalle.html) | Rendimiento detallado de un estudiante |
+| Vista | Descripción | Wireframe |
+|-------|-------------|-----------|
+| Panel | Dashboard con métricas de estudiantes tutorados | ![Panel docente](../imagenes/screenshots/docente-panel.png) |
+| Estudiantes | Lista de estudiantes con progreso | ![Estudiantes](../imagenes/screenshots/docente-estudiantes.png) |
+| Detalle estudiante | Rendimiento detallado de un estudiante | ![Detalle estudiante](../imagenes/screenshots/docente-estudiante-detalle.png) |
 
 ## Estudiante
 
-| Vista | Archivo | Descripción |
-|-------|---------|-------------|
-| Dashboard | [`estudiante-dashboard.html`](../../imagenes/wireframes/estudiante-dashboard.html) | Panel principal del estudiante |
-| Test (niveles) | [`estudiante-test.html`](../../imagenes/wireframes/estudiante-test.html) | Selección de nivel de test |
-| Preguntas test | [`estudiante-preguntas-test.html`](../../imagenes/wireframes/estudiante-preguntas-test.html) | Responder preguntas del test |
-| Historial tests | [`estudiante-test-historial.html`](../../imagenes/wireframes/estudiante-test-historial.html) | Historial de tests realizados |
-| Resultados test | [`estudiante-test-resultados.html`](../../imagenes/wireframes/estudiante-test-resultados.html) | Resultados detallados de un test |
-| Simulaciones | [`estudiante-simulaciones.html`](../../imagenes/wireframes/estudiante-simulaciones.html) | Lista de simulaciones asignadas |
-| Simulación interactiva | [`estudiante-simulacion-interactiva.html`](../../imagenes/wireframes/estudiante-simulacion-interactiva.html) | Simulación de phishing interactiva |
-| Recomendaciones | [`estudiante-recomendaciones.html`](../../imagenes/wireframes/estudiante-recomendaciones.html) | Recomendaciones personalizadas |
-| Evaluar contraseña | [`estudiante-evaluar-contrasena.html`](../../imagenes/wireframes/estudiante-evaluar-contrasena.html) | Evaluador de fortaleza de contraseñas |
-| Campañas | [`estudiante-campanas.html`](../../imagenes/wireframes/estudiante-campanas.html) | Campañas asignadas al estudiante |
+| Vista | Descripción | Wireframe |
+|-------|-------------|-----------|
+| Dashboard | Panel principal del estudiante | ![Dashboard](../imagenes/screenshots/estudiante-dashboard.png) |
+| Test (niveles) | Selección de nivel de test | ![Test niveles](../imagenes/screenshots/estudiante-test.png) |
+| Preguntas test | Responder preguntas del test | ![Preguntas test](../imagenes/screenshots/estudiante-preguntas-test.png) |
+| Historial tests | Historial de tests realizados | ![Historial](../imagenes/screenshots/estudiante-test-historial.png) |
+| Resultados test | Resultados detallados de un test | ![Resultados](../imagenes/screenshots/estudiante-test-resultados.png) |
+| Simulaciones | Lista de simulaciones asignadas | ![Simulaciones](../imagenes/screenshots/estudiante-simulaciones.png) |
+| Simulación interactiva | Simulación de phishing interactiva | ![Simulación interactiva](../imagenes/screenshots/estudiante-simulacion-interactiva.png) |
+| Recomendaciones | Recomendaciones personalizadas | ![Recomendaciones](../imagenes/screenshots/estudiante-recomendaciones.png) |
+| Evaluar contraseña | Evaluador de fortaleza de contraseñas | ![Evaluar contraseña](../imagenes/screenshots/estudiante-evaluar-contrasena.png) |
+| Campañas | Campañas asignadas al estudiante | ![Campañas estudiante](../imagenes/screenshots/estudiante-campanas.png) |
 
 ## Error
 
-| Vista | Archivo | Descripción |
-|-------|---------|-------------|
-| 403 | [`error-403.html`](../../imagenes/wireframes/error-403.html) | Acceso denegado |
-| 404 | [`error-404.html`](../../imagenes/wireframes/error-404.html) | Página no encontrada |
-| 500 | [`error-500.html`](../../imagenes/wireframes/error-500.html) | Error interno del servidor |
+| Vista | Descripción | Wireframe |
+|-------|-------------|-----------|
+| 403 | Acceso denegado | ![403](../imagenes/screenshots/error-403.png) |
+| 404 | Página no encontrada | ![404](../imagenes/screenshots/error-404.png) |
+| 500 | Error interno del servidor | ![500](../imagenes/screenshots/error-500.png) |
 
 ---
 
-**Total: 30 wireframes** (23 existentes en la app + 7 propuestos: recuperar contraseña, restablecer contraseña, campañas admin, campaña form, recomendaciones, evaluar contraseña, campañas estudiante).
+**Total: 30 wireframes** (23 existentes en la app + 7 propuestos).
+
+Los archivos fuente HTML están en [`../imagenes/wireframes/`](../imagenes/wireframes/) para edición.
