@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin - Gesti&oacute;n de Preguntas</title>
+<link rel="stylesheet" href="wireframe-style.css">
+</head>
+<body>
+<div class="wireframe">
+  <div class="header">
+    <div class="logo">Simulador Phishing</div>
+    <div class="user-badge">
+      <span class="user-name">Admin</span>
+      <div class="user-avatar"></div>
+      <div class="theme-toggle"></div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="sidebar">
+      <div class="menu-item">
+        <div class="menu-icon"></div>
+        Panel
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon"></div>
+        Usuarios
+      </div>
+      <div class="menu-item active">
+        <div class="menu-icon"></div>
+        Preguntas
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon"></div>
+        Escenarios
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon"></div>
+        Asignar
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon"></div>
+        Campa&ntilde;as
+      </div>
+    </div>
+    <div class="main">
+      <h1>Gesti&oacute;n de Preguntas</h1>
+      <div style="margin-bottom:15px;">
+        <button class="btn-wf primary">+ Nueva Pregunta</button>
+      </div>
+
+      <div style="display:flex;gap:10px;margin-bottom:15px;">
+        <select style="padding:8px;border:2px solid #bbb;border-radius:4px;background:#fff;font-size:13px;color:#666;">
+          <option>Todos los niveles</option>
+          <option>B&aacute;sico</option>
+          <option>Intermedio</option>
+          <option>Avanzado</option>
+        </select>
+        <input type="text" placeholder="Buscar pregunta..." style="flex:1;padding:8px;border:2px solid #bbb;border-radius:4px;background:#fff;font-size:13px;color:#666;">
+      </div>
+
+      <table class="table-wf">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Enunciado</th>
+            <th>Nivel</th>
+            <th>Opci&oacute;n correcta</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Un correo de un banco solicitando su clave es un ejemplo de...</td>
+            <td>B&aacute;sico</td>
+            <td>Phishing</td>
+            <td>
+              <button class="btn-wf" style="padding:4px 10px;">Editar</button>
+              <button class="btn-wf danger" style="padding:4px 10px;">Eliminar</button>
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Qu&eacute; protocolo encrypta la informaci&oacute;n en navegaci&oacute;n web?</td>
+            <td>Intermedio</td>
+            <td>HTTPS</td>
+            <td>
+              <button class="btn-wf" style="padding:4px 10px;">Editar</button>
+              <button class="btn-wf danger" style="padding:4px 10px;">Eliminar</button>
+            </td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Cu&aacute;l de las siguientes es una t&eacute;cnica de ingenier&iacute;a social?</td>
+            <td>Avanzado</td>
+            <td>Vishing</td>
+            <td>
+              <button class="btn-wf" style="padding:4px 10px;">Editar</button>
+              <button class="btn-wf danger" style="padding:4px 10px;">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="footer">
+    &copy; 2026 Corporaci&oacute;n Universitaria Remington &mdash; Simulador de Phishing
+  </div>
+</div>
+</body>
+</html>

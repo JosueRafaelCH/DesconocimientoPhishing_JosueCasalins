@@ -1,0 +1,87 @@
+/* Wireframe shared styles */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; }
+body { background: #f0f0f0; padding: 20px; }
+.wireframe { max-width: 1200px; margin: 0 auto; background: #fff; border: 2px solid #aaa; border-radius: 8px; min-height: 700px; display: flex; flex-direction: column; }
+/* Header */
+.header { display: flex; align-items: center; justify-content: space-between; padding: 15px 25px; border-bottom: 2px solid #aaa; background: #e8e8e8; border-radius: 6px 6px 0 0; }
+.logo { width: 180px; height: 36px; border: 2px dashed #888; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #888; font-size: 13px; background: #f5f5f5; }
+.user-badge { display: flex; align-items: center; gap: 15px; }
+.user-avatar { width: 36px; height: 36px; border-radius: 50%; border: 2px solid #888; background: #ddd; }
+.user-name { color: #666; font-size: 13px; border: 1px dashed #999; padding: 4px 12px; border-radius: 4px; }
+.theme-toggle { width: 40px; height: 24px; border: 2px solid #888; border-radius: 12px; background: #ddd; position: relative; }
+.theme-toggle::after { content: ''; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: #888; }
+/* Content area */
+.content { display: flex; flex: 1; }
+/* Sidebar */
+.sidebar { width: 220px; border-right: 2px solid #aaa; padding: 15px 0; background: #f5f5f5; flex-shrink: 0; }
+.menu-item { display: flex; align-items: center; gap: 10px; padding: 10px 20px; margin: 2px 10px; border: 1px dashed #aaa; border-radius: 4px; color: #666; font-size: 13px; background: #fff; }
+.menu-item.active { border-style: solid; border-color: #666; background: #ddd; color: #333; }
+.menu-icon { width: 18px; height: 18px; border: 1px solid #999; border-radius: 3px; background: #e0e0e0; flex-shrink: 0; }
+/* Main */
+.main { flex: 1; padding: 25px; }
+.main h1 { font-size: 22px; color: #444; margin-bottom: 8px; font-weight: 400; border-bottom: 1px solid #ccc; padding-bottom: 8px; }
+.subtitle { color: #888; font-size: 13px; margin-bottom: 25px; }
+/* Cards */
+.stats-row { display: flex; gap: 15px; margin-bottom: 25px; }
+.stat-card { flex: 1; border: 2px solid #aaa; border-radius: 6px; padding: 18px; background: #fafafa; }
+.stat-card .num { font-size: 28px; color: #444; }
+.stat-card .label { font-size: 12px; color: #888; margin-top: 4px; }
+/* Tables */
+.table-wf { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+.table-wf th, .table-wf td { border: 1px solid #bbb; padding: 8px 12px; text-align: left; font-size: 13px; }
+.table-wf th { background: #e8e8e8; color: #555; font-weight: 500; }
+.table-wf td { color: #666; }
+/* Forms */
+.form-wf { max-width: 600px; }
+.form-wf .field { margin-bottom: 15px; }
+.form-wf label { display: block; font-size: 13px; color: #666; margin-bottom: 4px; }
+.form-wf input, .form-wf select, .form-wf textarea { width: 100%; padding: 8px 10px; border: 2px solid #bbb; border-radius: 4px; background: #fff; font-size: 13px; color: #666; }
+.form-wf textarea { height: 80px; }
+.form-wf .btn-row { display: flex; gap: 10px; margin-top: 20px; }
+.btn-wf { padding: 8px 20px; border: 2px solid #888; border-radius: 4px; background: #e0e0e0; color: #555; font-size: 13px; cursor: default; }
+.btn-wf.primary { background: #ccc; border-color: #666; color: #333; }
+.btn-wf.danger { background: #f0d0d0; border-color: #c88; color: #855; }
+/* Detail card */
+.detail-card { border: 2px solid #aaa; border-radius: 6px; padding: 20px; background: #fafafa; margin-bottom: 20px; }
+.detail-row { display: flex; margin-bottom: 8px; font-size: 13px; }
+.detail-row .lbl { width: 140px; color: #888; }
+.detail-row .val { color: #444; }
+/* Alert */
+.alert-wf { padding: 10px 15px; border: 2px solid #cc0; background: #ffd; border-radius: 4px; color: #663; font-size: 13px; margin-bottom: 15px; }
+.alert-wf.error { border-color: #c88; background: #fdd; color: #833; }
+.alert-wf.success { border-color: #8c8; background: #dfd; color: #383; }
+/* Grid cards for scenarios */
+.card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; margin-bottom: 20px; }
+.scenario-card { border: 2px solid #aaa; border-radius: 6px; padding: 18px; background: #fafafa; }
+.scenario-card h3 { font-size: 15px; color: #444; margin-bottom: 6px; }
+.scenario-card p { font-size: 12px; color: #888; margin-bottom: 10px; }
+/* Simulation interactive */
+.email-viewer { border: 2px solid #aaa; border-radius: 6px; padding: 25px; background: #fafafa; margin-bottom: 15px; }
+.email-viewer .from { font-size: 13px; color: #888; margin-bottom: 6px; }
+.email-viewer .subject { font-size: 16px; color: #333; margin-bottom: 12px; }
+.email-viewer .body { font-size: 13px; color: #555; line-height: 1.6; }
+.interactive-actions { display: flex; gap: 15px; margin-top: 20px; }
+/* Question */
+.question-box { border: 2px solid #aaa; border-radius: 6px; padding: 20px; background: #fafafa; margin-bottom: 20px; }
+.question-box .q-text { font-size: 15px; color: #333; margin-bottom: 15px; }
+.option-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; }
+.option-row .radio { width: 18px; height: 18px; border: 2px solid #888; border-radius: 50%; background: #fff; flex-shrink: 0; }
+.option-row .opt-text { font-size: 13px; color: #555; }
+/* Feedback box */
+.feedback-box { border: 2px solid #8c8; border-radius: 6px; padding: 15px; background: #dfd; margin-top: 15px; }
+.feedback-box h4 { font-size: 14px; color: #383; margin-bottom: 6px; }
+.feedback-box p { font-size: 12px; color: #565; }
+/* Footer */
+.footer { padding: 10px 25px; border-top: 2px solid #aaa; background: #e8e8e8; border-radius: 0 0 6px 6px; text-align: center; color: #888; font-size: 12px; }
+/* Centered auth layout */
+.auth-container { max-width: 420px; margin: 60px auto; background: #fff; border: 2px solid #aaa; border-radius: 8px; padding: 35px; }
+.auth-container .logo { margin: 0 auto 25px; }
+.auth-container h2 { text-align: center; font-size: 20px; color: #444; font-weight: 400; margin-bottom: 20px; }
+.auth-container .field { margin-bottom: 15px; }
+.auth-container label { display: block; font-size: 13px; color: #666; margin-bottom: 4px; }
+.auth-container input { width: 100%; padding: 10px; border: 2px solid #bbb; border-radius: 4px; background: #fff; font-size: 14px; }
+.auth-container .btn-wf { width: 100%; text-align: center; padding: 10px; margin-top: 10px; }
+.auth-container .auth-link { text-align: center; font-size: 12px; color: #888; margin-top: 15px; }
+/* Password strength bar */
+.strength-bar { height: 8px; border: 1px solid #bbb; border-radius: 4px; background: #eee; margin: 5px 0; overflow: hidden; }
+.strength-bar .fill { height: 100%; width: 40%; background: #cc0; }

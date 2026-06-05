@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear cuenta — Phishing Simulator</title>
+  <link rel="stylesheet" href="wireframe-style.css">
+</head>
+<body>
+  <div class="auth-container">
+    <div class="logo">Logo Remington</div>
+    <h2>Crear cuenta</h2>
+    <div class="field">
+      <label for="nombre">Nombre</label>
+      <input type="text" id="nombre" placeholder="Juan">
+    </div>
+    <div class="field">
+      <label for="apellido">Apellido</label>
+      <input type="text" id="apellido" placeholder="Pérez">
+    </div>
+    <div class="field">
+      <label for="correo">Correo electrónico</label>
+      <input type="email" id="correo" placeholder="correo@ejemplo.com">
+    </div>
+    <div class="field">
+      <label for="contraseña">Contraseña</label>
+      <input type="password" id="contraseña" placeholder="············">
+    </div>
+    <div class="field">
+      <label for="estrato">Estrato</label>
+      <select id="estrato">
+        <option value="">Seleccione...</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+      </select>
+    </div>
+    <div class="field" style="display:flex; align-items:center; gap:8px;">
+      <input type="checkbox" id="terminos" style="width:auto;">
+      <label for="terminos" style="margin:0;">Acepto los términos y condiciones</label>
+    </div>
+    <button class="btn-wf primary">Crear cuenta</button>
+    <div class="auth-link">
+      <a href="auth-login.html">¿Ya tienes cuenta? Inicia sesión</a>
+    </div>
+  </div>
+</body>
+</html>

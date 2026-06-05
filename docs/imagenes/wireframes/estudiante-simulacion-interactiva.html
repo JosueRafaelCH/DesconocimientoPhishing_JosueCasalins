@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estudiante - Simulación Interactiva</title>
+  <link rel="stylesheet" href="wireframe-style.css">
+</head>
+<body>
+  <div class="wireframe">
+    <header class="header">
+      <div class="logo">Phishing Simulator</div>
+      <div class="user-badge">
+        <span class="user-name">Estudiante Remington</span>
+        <div class="user-avatar"></div>
+        <div class="theme-toggle"></div>
+      </div>
+    </header>
+    <div class="content">
+      <aside class="sidebar">
+        <ul>
+          <li class="menu-item"><a href="estudiante-dashboard.html">Dashboard</a></li>
+          <li class="menu-item"><a href="estudiante-test.html">Test</a></li>
+          <li class="menu-item active"><a href="estudiante-simulaciones.html">Simulaciones</a></li>
+          <li class="menu-item"><a href="estudiante-recomendaciones.html">Recomendaciones</a></li>
+          <li class="menu-item"><a href="estudiante-evaluar-contrasena.html">Evaluar Contraseña</a></li>
+          <li class="menu-item"><a href="estudiante-campanas.html">Campañas</a></li>
+        </ul>
+      </aside>
+      <main class="main">
+        <h1>Simulación Interactiva</h1>
+        <div class="alert-wf">Evalúa este correo electrónico. Decide si es phishing o legítimo.</div>
+        <div class="email-viewer">
+          <p class="from"><strong>From:</strong> soporte@banco-seguro.com</p>
+          <p class="subject"><strong>Subject:</strong> Actualización urgente de cuenta</p>
+          <p class="body"><strong>Body:</strong> Estimado cliente, su cuenta ha sido bloqueada por actividad sospechosa. Para restaurar el acceso, haga clic en el siguiente enlace e ingrese sus credenciales. De no hacerlo en 24 horas, su cuenta será cerrada permanentemente. http://banco-seguro.com/verificar</p>
+        </div>
+        <div class="btn-row">
+          <button class="btn-wf danger">Es phishing — Reportar</button>
+          <button class="btn-wf primary">Es legítimo — Abrir enlace</button>
+          <button class="btn-wf">No estoy seguro</button>
+        </div>
+        <div class="feedback-box">
+          <p>¡Correcto! Este es un claro ejemplo de phishing. El enlace dirige a un sitio falso que roba credenciales. Los bancos reales nunca piden datos sensibles por correo.</p>
+        </div>
+      </main>
+    </div>
+    <footer class="footer">© 2026 Corp. Universitaria Remington — Phishing Simulator</footer>
+  </div>
+</body>
+</html>

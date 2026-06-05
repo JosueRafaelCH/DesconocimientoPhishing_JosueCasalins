@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin - Asignar Simulaci&oacute;n</title>
+<link rel="stylesheet" href="wireframe-style.css">
+</head>
+<body>
+<div class="wireframe">
+  <div class="header">
+    <div class="logo">Simulador Phishing</div>
+    <div class="user-badge">
+      <span class="user-name">Admin</span>
+      <div class="user-avatar"></div>
+      <div class="theme-toggle"></div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="sidebar">
+      <div class="menu-item">
+        <div class="menu-icon"></div>
+        Panel
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon"></div>
+        Usuarios
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon"></div>
+        Preguntas
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon"></div>
+        Escenarios
+      </div>
+      <div class="menu-item active">
+        <div class="menu-icon"></div>
+        Asignar
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon"></div>
+        Campa&ntilde;as
+      </div>
+    </div>
+    <div class="main">
+      <h1>Asignar Simulaci&oacute;n</h1>
+      <div class="subtitle">Asigne un escenario de phishing a un usuario</div>
+
+      <form class="form-wf">
+        <div class="field">
+          <label>Usuario</label>
+          <select>
+            <option>Seleccione un usuario</option>
+            <option>Juan Pablo R&iacute;os</option>
+            <option>Laura G&oacute;mez</option>
+            <option>Carlos M&eacute;ndez</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Escenario</label>
+          <select>
+            <option>Seleccione un escenario</option>
+            <option>Correo de facturaci&oacute;n falsa</option>
+            <option>Suplantaci&oacute;n de identidad bancaria</option>
+            <option>Oferta de trabajo falsa</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Fecha de asignaci&oacute;n</label>
+          <input type="date">
+        </div>
+        <div class="btn-row">
+          <button class="btn-wf primary">Asignar</button>
+          <button class="btn-wf">Cancelar</button>
+        </div>
+      </form>
+
+      <h2 style="font-size:16px;color:#555;font-weight:400;margin:25px 0 10px;">Asignaciones recientes</h2>
+      <table class="table-wf">
+        <thead>
+          <tr>
+            <th>Usuario</th>
+            <th>Escenario</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Juan Pablo R&iacute;os</td>
+            <td>Correo de facturaci&oacute;n falsa</td>
+            <td>2026-05-20</td>
+            <td>Completado</td>
+          </tr>
+          <tr>
+            <td>Laura G&oacute;mez</td>
+            <td>Suplantaci&oacute;n de identidad bancaria</td>
+            <td>2026-05-22</td>
+            <td>Pendiente</td>
+          </tr>
+          <tr>
+            <td>Carlos M&eacute;ndez</td>
+            <td>Oferta de trabajo falsa</td>
+            <td>2026-05-25</td>
+            <td>En progreso</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="footer">
+    &copy; 2026 Corporaci&oacute;n Universitaria Remington &mdash; Simulador de Phishing
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin - Crear / Editar Pregunta</title>
+<link rel="stylesheet" href="wireframe-style.css">
+</head>
+<body>
+<div class="wireframe">
+  <div class="header">
+    <div class="logo">Simulador Phishing</div>
+    <div class="user-badge">
+      <span class="user-name">Admin</span>
+      <div class="user-avatar"></div>
+      <div class="theme-toggle"></div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="sidebar">
+      <div class="menu-item">
+        <div class="menu-icon"></div>
+        Panel
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon"></div>
+        Usuarios
+      </div>
+      <div class="menu-item active">
+        <div class="menu-icon"></div>
+        Preguntas
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon"></div>
+        Escenarios
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon"></div>
+        Asignar
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon"></div>
+        Campa&ntilde;as
+      </div>
+    </div>
+    <div class="main">
+      <h1>Crear / Editar Pregunta</h1>
+      <div class="subtitle">Complete los campos del formulario</div>
+
+      <form class="form-wf">
+        <div class="field">
+          <label>Enunciado</label>
+          <textarea placeholder="Redacte el enunciado de la pregunta..."></textarea>
+        </div>
+        <div class="field">
+          <label>Nivel</label>
+          <select>
+            <option>B&aacute;sico</option>
+            <option>Intermedio</option>
+            <option>Avanzado</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Opci&oacute;n A</label>
+          <input type="text" placeholder="Texto de la opci&oacute;n A">
+          <div style="margin-top:4px;display:flex;align-items:center;gap:6px;">
+            <div class="option-row" style="padding:0;">
+              <div class="radio" style="background:#888;"></div>
+              <span class="opt-text" style="font-size:12px;">Marcar como correcta</span>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label>Opci&oacute;n B</label>
+          <input type="text" placeholder="Texto de la opci&oacute;n B">
+          <div style="margin-top:4px;display:flex;align-items:center;gap:6px;">
+            <div class="option-row" style="padding:0;">
+              <div class="radio"></div>
+              <span class="opt-text" style="font-size:12px;">Marcar como correcta</span>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label>Opci&oacute;n C</label>
+          <input type="text" placeholder="Texto de la opci&oacute;n C">
+          <div style="margin-top:4px;display:flex;align-items:center;gap:6px;">
+            <div class="option-row" style="padding:0;">
+              <div class="radio"></div>
+              <span class="opt-text" style="font-size:12px;">Marcar como correcta</span>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label>Opci&oacute;n D</label>
+          <input type="text" placeholder="Texto de la opci&oacute;n D">
+          <div style="margin-top:4px;display:flex;align-items:center;gap:6px;">
+            <div class="option-row" style="padding:0;">
+              <div class="radio"></div>
+              <span class="opt-text" style="font-size:12px;">Marcar como correcta</span>
+            </div>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn-wf primary">Guardar</button>
+          <button class="btn-wf">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="footer">
+    &copy; 2026 Corporaci&oacute;n Universitaria Remington &mdash; Simulador de Phishing
+  </div>
+</div>
+</body>
+</html>

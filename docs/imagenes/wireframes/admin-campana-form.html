@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin - Crear / Editar Campa&ntilde;a</title>
+<link rel="stylesheet" href="wireframe-style.css">
+</head>
+<body>
+<div class="wireframe">
+  <div class="header">
+    <div class="logo">Simulador Phishing</div>
+    <div class="user-badge">
+      <span class="user-name">Admin</span>
+      <div class="user-avatar"></div>
+      <div class="theme-toggle"></div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="sidebar">
+      <div class="menu-item">
+        <div class="menu-icon"></div>
+        Panel
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon"></div>
+        Usuarios
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon"></div>
+        Preguntas
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon"></div>
+        Escenarios
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon"></div>
+        Asignar
+      </div>
+      <div class="menu-item active">
+        <div class="menu-icon"></div>
+        Campa&ntilde;as
+      </div>
+    </div>
+    <div class="main">
+      <h1>Crear / Editar Campa&ntilde;a</h1>
+      <div class="subtitle">Complete los campos del formulario</div>
+
+      <form class="form-wf">
+        <div class="field">
+          <label>Nombre</label>
+          <input type="text" placeholder="Nombre de la campa&ntilde;a">
+        </div>
+        <div class="field">
+          <label>Descripci&oacute;n</label>
+          <textarea placeholder="Describa el prop&oacute;sito de la campa&ntilde;a..."></textarea>
+        </div>
+        <div class="field">
+          <label>Fecha de inicio</label>
+          <input type="date">
+        </div>
+        <div class="field">
+          <label>Fecha de fin</label>
+          <input type="date">
+        </div>
+        <div class="field">
+          <label>P&uacute;blico objetivo</label>
+          <div style="display:flex;gap:20px;padding:8px 0;">
+            <label style="display:flex;align-items:center;gap:6px;font-size:13px;color:#666;">
+              <input type="checkbox" style="width:auto;"> Estudiantes
+            </label>
+            <label style="display:flex;align-items:center;gap:6px;font-size:13px;color:#666;">
+              <input type="checkbox" style="width:auto;"> Docentes
+            </label>
+          </div>
+        </div>
+        <div class="field">
+          <label>Escenarios</label>
+          <select multiple style="height:100px;">
+            <option>Correo de facturaci&oacute;n falsa</option>
+            <option>Suplantaci&oacute;n de identidad bancaria</option>
+            <option>Oferta de trabajo falsa</option>
+          </select>
+        </div>
+        <div class="btn-row">
+          <button class="btn-wf primary">Guardar</button>
+          <button class="btn-wf">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="footer">
+    &copy; 2026 Corporaci&oacute;n Universitaria Remington &mdash; Simulador de Phishing
+  </div>
+</div>
+</body>
+</html>
