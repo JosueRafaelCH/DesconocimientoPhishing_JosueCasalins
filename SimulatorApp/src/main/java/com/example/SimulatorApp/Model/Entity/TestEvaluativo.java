@@ -57,13 +57,8 @@ public class TestEvaluativo {
     @JsonBackReference
     private List<RespuestaTest> respuestas = new ArrayList<>();
 
-    @OneToMany(mappedBy = "test", fetch = FetchType.LAZY)
-    @JsonBackReference
-    private List<EventoSimulacion> eventos = new ArrayList<>();
-
     public TestEvaluativo() {
         respuestas = new ArrayList<>();
-        eventos = new ArrayList<>();
     }
 
     public Integer getId() { return id; }
@@ -84,6 +79,4 @@ public class TestEvaluativo {
     public void setCalificacion(Double calificacion) { this.calificacion = calificacion; }
     public List<RespuestaTest> getRespuestas() { return respuestas; }
     public void setRespuestas(List<RespuestaTest> respuestas) { this.respuestas = respuestas; }
-    public List<EventoSimulacion> getEventos() { return eventos; }
-    public void setEventos(List<EventoSimulacion> eventos) { this.eventos = eventos; }
 }

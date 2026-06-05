@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Configuration
@@ -17,12 +18,30 @@ public class DataLoader {
     @Transactional
     CommandLineRunner initDatabase(UsuarioDAOIface usuarioRepository, RoleDAOIface roleRepository, 
                                    EstadoUsuarioDAOIface estadoRepository, EstratoDAOIface estratoRepository,
+                                   NivelDificultadDAOIface nivelRepository,
+                                   EstadoEventoDAOIface estadoEventoRepository,
                                    PasswordEncoder passwordEncoder) {
         return args -> {
             if (roleRepository.count() == 0) {
                 roleRepository.save(new Role(null, "Admin", null));
                 roleRepository.save(new Role(null, "Docente", null));
                 roleRepository.save(new Role(null, "Estudiante", null));
+            }
+            if (nivelRepository.count() == 0) {
+                nivelRepository.save(new NivelDificultad(null, "Fácil", BigDecimal.valueOf(0), BigDecimal.valueOf(60),
+                        "Preguntas básicas sobre conceptos generales de phishing y seguridad informática.", null, null));
+                nivelRepository.save(new NivelDificultad(null, "Medianamente fácil", BigDecimal.valueOf(61), BigDecimal.valueOf(80),
+                        "Situaciones cotidianas de phishing con señales moderadamente ocultas.", null, null));
+                nivelRepository.save(new NivelDificultad(null, "Difícil", BigDecimal.valueOf(81), BigDecimal.valueOf(90),
+                        "Escenarios complejos con técnicas de phishing avanzadas y señales sutiles.", null, null));
+                nivelRepository.save(new NivelDificultad(null, "Nivel profesional", BigDecimal.valueOf(91), BigDecimal.valueOf(100),
+                        "Casos reales de alta sofisticación: spear phishing, whaling y ataques multicanal.", null, null));
+            }
+            if (estadoEventoRepository.count() == 0) {
+                estadoEventoRepository.save(new EstadoEvento(null, "Pendiente", null));
+                estadoEventoRepository.save(new EstadoEvento(null, "En curso", null));
+                estadoEventoRepository.save(new EstadoEvento(null, "Completado", null));
+                estadoEventoRepository.save(new EstadoEvento(null, "Cancelado", null));
             }
             if (estadoRepository.count() == 0) {
                 estadoRepository.save(new EstadoUsuario(null, "Activo", null));

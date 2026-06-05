@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * AdminController
@@ -264,7 +266,12 @@ public class AdminController {
     // --- Asignar Simulacion ---
     @GetMapping("/asignar")
     public String asignarSimulacionForm(Model model) {
-        model.addAttribute("usuarios", simuladorService.buscarUsuariosTodos());
+        List<Usuario> docentes = simuladorService.buscarUsuariosPorRol(2);
+        List<Usuario> estudiantes = simuladorService.buscarUsuariosPorRol(3);
+        List<Usuario> usuarios = new ArrayList<>();
+        usuarios.addAll(docentes);
+        usuarios.addAll(estudiantes);
+        model.addAttribute("usuarios", usuarios);
         model.addAttribute("escenarios", simuladorService.buscarEscenariosTodos());
         model.addAttribute("estadosEvento", simuladorService.buscarEstadosEventoTodos());
         model.addAttribute("eventos", simuladorService.buscarEventosTodos());
@@ -274,13 +281,14 @@ public class AdminController {
     @PostMapping("/asignar/guardar")
     public String guardarAsignacion(@RequestParam Integer idUsuario, @RequestParam Integer idEscenario,
                                      @RequestParam Integer idEstadoEvento) {
-        EventoSimulacion evento = new EventoSimulacion();
-        evento.setUsuario(simuladorService.buscarUsuarioPorId(idUsuario));
-        evento.setEscenario(simuladorService.buscarEscenarioPorId(idEscenario));
-        evento.setEstadoEvento(simuladorService.buscarEstadoEventoPorId(idEstadoEvento));
-        evento.setFechaEnvio(LocalDate.now());
-        evento.setFechaActualizacion(LocalDate.now());
-        simuladorService.guardarEvento(evento);
-        return "redirect:/admin/asignar";
+        try {
+            EventoSimulacion evento = simuladorService.crearAsignacion(idUsuario, idEscenario, idEstadoEvento);
+            if (evento == null) {
+                return "redirect:/admin/asignar?error=error_entidad";
+            }
+            return "redirect:/admin/asignar?exito=ok";
+        } catch (Exception e) {
+            return "redirect:/admin/asignar?error=error_db";
+        }
     }
 }

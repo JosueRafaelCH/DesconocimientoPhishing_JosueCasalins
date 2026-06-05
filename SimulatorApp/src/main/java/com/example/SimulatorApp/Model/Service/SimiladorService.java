@@ -361,6 +361,22 @@ public class SimiladorService implements SimiladorServiceIface {
         return eventoDAO.save(evento); 
     }
 
+    @Override
+    @Transactional
+    public EventoSimulacion crearAsignacion(Integer idUsuario, Integer idEscenario, Integer idEstadoEvento) {
+        Usuario usuario = usuarioDAO.findById(idUsuario).orElse(null);
+        EscenarioPhishing escenario = escenarioDAO.findById(idEscenario).orElse(null);
+        EstadoEvento estadoEvento = estadoEventoDAO.findById(idEstadoEvento).orElse(null);
+        if (usuario == null || escenario == null || estadoEvento == null) return null;
+        EventoSimulacion evento = new EventoSimulacion();
+        evento.setUsuario(usuario);
+        evento.setEscenario(escenario);
+        evento.setEstadoEvento(estadoEvento);
+        evento.setFechaEnvio(LocalDate.now());
+        evento.setFechaActualizacion(LocalDate.now());
+        return eventoDAO.save(evento);
+    }
+
     @Override 
     @Transactional(readOnly = true) 
     public EventoSimulacion buscarEventoPorId(Integer id) { 

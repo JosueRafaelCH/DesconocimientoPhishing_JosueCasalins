@@ -16,6 +16,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "Eventos_Simulacion")
@@ -36,9 +37,7 @@ public class EventoSimulacion {
     @JsonManagedReference
     private EscenarioPhishing escenario;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_test", nullable = false)
-    @JsonManagedReference
+    @Transient
     private TestEvaluativo test;
 
     @ManyToOne(fetch = FetchType.LAZY)

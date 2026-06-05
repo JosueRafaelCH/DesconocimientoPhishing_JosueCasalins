@@ -10,7 +10,8 @@
             <p>Asigna escenarios de phishing a estudiantes</p>
         </div>
 
-        <div th:if="${mensaje}" class="alert-custom alert-custom-success mb-4" th:text="${mensaje}"></div>
+        <div th:if="${param.exito}" class="alert-custom alert-custom-success mb-4" th:text="${param.exito[0]}"></div>
+        <div th:if="${param.error}" class="alert-custom alert-custom-danger mb-4" th:text="${param.error[0]}"></div>
 
         <div class="row g-4">
             <div class="col-md-5">

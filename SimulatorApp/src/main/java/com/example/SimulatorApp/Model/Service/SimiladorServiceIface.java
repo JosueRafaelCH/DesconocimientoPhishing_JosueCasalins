@@ -68,6 +68,7 @@ public interface SimiladorServiceIface {
     // --- EventoSimulacion ---
     public List<EventoSimulacion> buscarEventosTodos();
     public EventoSimulacion guardarEvento(EventoSimulacion evento);
+    public EventoSimulacion crearAsignacion(Integer idUsuario, Integer idEscenario, Integer idEstadoEvento);
     public EventoSimulacion buscarEventoPorId(Integer id);
     public void eliminarEventoPorId(Integer id);
     public List<EventoSimulacion> buscarEventosPorUsuario(Integer idUsuario);
